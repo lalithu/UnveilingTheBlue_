@@ -1,0 +1,1617 @@
+@font-face {
+  src: url(fonts/NimbusSansT-RegularCondensed.otf);
+  font-family: nimbus;
+}
+
+@font-face {
+  src: url(fonts/NimbusSansT-BoldCondensed.otf);
+  font-family: nimbus-bold;
+}
+
+/* Master Styles */
+.site-wrapper {
+  overflow: hidden;
+  /* darkmode!! background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); */
+}
+
+body {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  /*  background: linear-gradient(90deg, #FF2525 0%, #F0F2F0, #002DD0 100%);
+      background-size: 400% 400%;
+      -webkit-animation: Gradient 15s ease infinite;
+      -moz-animation: Gradient 15s ease infinite;
+      animation: Gradient 15s ease infinite;
+      overflow-x: hidden; */
+}
+
+/*
+  @-webkit-keyframes Gradient {
+      0% {
+          background-position: 0% 50%
+      }
+      50% {
+          background-position: 100% 50%
+      }
+      100% {
+          background-position: 0% 50%
+      }
+  }
+  
+  @-moz-keyframes Gradient {
+      0% {
+          background-position: 0% 50%
+      }
+      50% {
+          background-position: 100% 50%
+      }
+      100% {
+          background-position: 0% 50%
+      }
+  }
+  
+  @keyframes Gradient {
+      0% {
+          background-position: 0% 50%
+      }
+      50% {
+          background-position: 100% 50%
+      }
+      100% {
+          background-position: 0% 50%
+      }
+  }
+  
+  .container {
+      display: grid;
+      grid-template-columns: 1fr;
+  }
+  */
+
+/* Nav Styles */
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+.right-side {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.left-side-image {
+  display: flex;
+}
+
+.nav-wrapper > .right-side > div {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  margin-left: 30px;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-wrapper > .left-side-image > div {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  letter-spacing: 1.25;
+  margin-right: 30px;
+  font-size: 1.25em;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  padding: 4px;
+  background: linear-gradient(
+    to right,
+    black,
+    dodgerblue 20%,
+    mediumspringgreen 40%,
+    gold 60%,
+    orangered 80%,
+    black
+  );
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: blueblue 5s linear infinite;
+
+  /* color: #f35626;
+      background-image: -webkit-linear-gradient(90deg, #f35626, #feab3a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-animation: hue 5s infinite linear; */
+}
+
+@keyframes blueblue {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* @-webkit-keyframes hue {
+      from {
+          -webkit-filter: hue-rotate(0deg);
+      }
+      to {
+          -webkit-filter: hue-rotate(-360deg);
+      }
+  } */
+
+.nav-link-wrapper {
+  height: 20px;
+  padding: 5px;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.5s;
+}
+
+.logo {
+  height: 24px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.5s;
+}
+
+.nav-link-wrapper a {
+  color: black;
+  text-decoration: none;
+  transition: color 0.5s;
+}
+
+.logo a {
+  color: black;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+.nav-link-wrapper:hover {
+  border-bottom: 2px solid dodgerblue;
+}
+
+/*.logo a:hover {
+    text-shadow: 2px 2px 5px rgba(30, 144, 255, 0.5);
+  } */
+
+.nav-link-wrapper a:hover {
+  color: dodgerblue;
+}
+
+.burger {
+  display: none;
+}
+
+.burger div {
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  margin: 10px;
+  transition: 0.375s ease;
+}
+
+@media screen and (max-width: 1240px) {
+  body {
+    position: relative;
+    scroll-behavior: auto;
+    width: 100%;
+  }
+
+  .nav-link-wrapper > div {
+    border-bottom: none;
+  }
+
+  .nav-link-wrapper:hover {
+    border-bottom: none;
+  }
+
+  .right-side {
+    background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+    position: absolute;
+    right: 0px;
+    height: 0px;
+    top: 74px;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: center;
+    width: 100%;
+    transition: all 1s ease;
+    overflow-x: hidden;
+    box-shadow: 0px 10px 60px dodgerblue;
+    border-bottom: 0px;
+  }
+
+  .right-side > div {
+    padding: 18px;
+    position: relative;
+    overflow-x: hidden;
+    height: 18px;
+    border-bottom: none;
+  }
+
+  .nav-link-wrapper a {
+    color: white;
+    text-decoration: none;
+    transition: color 1s;
+    transition: all 1s;
+    opacity: 0;
+  }
+
+  .nav-link-wrapper a:hover {
+    color: black;
+  }
+
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .logo {
+    padding: 4px 0px;
+    height: 25px;
+  }
+
+  .nav-active {
+    height: 399px;
+  }
+
+  .nav-active .nav-link-wrapper a {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home-image-wrapper,
+  .home-image-wrapper-About,
+  .home-image-wrapper-POW,
+  .home-image-wrapper-Blog,
+  .home-image-wrapper-Astro,
+  .home-image-wrapper-SpaceX {
+    zoom: 53.75%;
+    background-position: center;
+  }
+
+  .logo {
+    height: 24px;
+    font-size: 5px;
+    padding: 1px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
+  }
+
+  .burger div {
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    margin: 10px;
+    transition: 0.5s ease;
+  }
+
+  .nav-wrapper > .right-side > div {
+    font-size: 1em;
+  }
+
+  .right-side > div {
+    padding: 8px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .right-side {
+    top: 74px;
+    height: 0;
+  }
+
+  .nav-active {
+    height: 214px;
+  }
+
+  .nav-active .nav-link-wrapper a {
+    opacity: 1;
+  }
+}
+
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+/*.toggle .line2 {
+      opacity: 0;
+  } */
+
+.toggle .line2 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  margin: 0px;
+  padding: 10px;
+  background-color: dodgerblue;
+  box-shadow: 0px -10px 60px dodgerblue;
+}
+
+#footerText {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 0.0125rem;
+  font-weight: 300;
+  font-size: 0.875rem;
+  color: white;
+  padding: 5px;
+}
+
+.footer-leftside {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-leftside > div a {
+  text-decoration: none;
+  color: white;
+  padding: 6px;
+}
+
+@media screen and (max-width: 340px) {
+  .nav-wrapper > .left-side-image > div {
+    letter-spacing: 1.25;
+    font-size: 1.15em;
+  }
+
+  #footerText {
+    font-size: 0.6625rem;
+  }
+
+  .home-image-wrapper,
+  .home-image-wrapper-About,
+  .home-image-wrapper-POW,
+  .home-image-wrapper-Blog,
+  .home-image-wrapper-Astro,
+  .home-image-wrapper-SpaceX {
+    zoom: 50%;
+    background-position: center;
+  }
+
+  .nav-active {
+    height: 199px;
+  }
+
+  .nav-wrapper > .right-side > div {
+    font-size: 0.825em;
+  }
+}
+
+.home-image-wrapper {
+  height: 400px;
+  width: 100%;
+  background-image: url(images/milkyway2.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-position: center;
+  box-shadow: 0px 0px 40px dodgerblue;
+}
+
+.home-image-wrapper-SpaceX {
+  height: 400px;
+  width: 100%;
+  background-image: url(images/nasa6.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-position: center;
+  box-shadow: 0px 0px 40px dodgerblue;
+}
+
+.home-image-wrapper-Astro {
+  height: 400px;
+  width: 100%;
+  background-image: url(images/nasa5.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-position: center;
+  box-shadow: 0px 0px 40px dodgerblue;
+}
+
+.home-image-wrapper-Blog {
+  height: 400px;
+  width: 100%;
+  background-image: url(images/nasa2.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-position: center;
+  box-shadow: 0px 0px 40px dodgerblue;
+}
+
+.home-image-wrapper-About {
+  height: 400px;
+  width: 100%;
+  background-image: url(images/moon.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-position: center;
+  box-shadow: 0px 0px 40px dodgerblue;
+}
+
+.home-image-wrapper-POW {
+  height: 400px;
+  width: 100%;
+  background-image: url(images/nasa8.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-position: center;
+  box-shadow: 0px 0px 40px dodgerblue;
+}
+
+article {
+  display: grid;
+  grid-template-columns: 1fr 0.5in [start] 1.25in 5in 1.25in [end] 0.5in 1fr;
+  padding: 10px;
+}
+
+article * {
+  grid-column: start/end;
+}
+
+@media (max-width: 8.5in) {
+  article {
+    grid-template-columns: 1fr 5% [start] 15% 60% 15% [end] 5% 1fr;
+  }
+}
+
+img {
+  width: 100%;
+}
+
+.purpose,
+.aboutMe {
+  margin: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bolder;
+  font-size: 1.75rem;
+}
+
+.purpose-para,
+.aboutMe-para {
+  margin: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+@media screen and (max-width: 600px) {
+  .nav-wrapper > .left-side-image > div {
+    letter-spacing: 0.25;
+  }
+
+  .purpose,
+  .aboutMe {
+    font-size: 1.5rem;
+  }
+}
+
+.bois {
+  grid-column: 4/5;
+  padding: 5px;
+}
+
+.aBriefHistoryOfSpaceExploration,
+.aBriefHistoryOfAstronomy,
+.devInAstro,
+.ourSolarSystem {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bold;
+  font-size: 2.25rem;
+}
+
+.dropdownExplanation,
+.tocContents {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  margin: 0px;
+  padding: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  font-style: italic;
+  line-height: 1.75;
+}
+
+.whereItAllBegan {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 0.0125rem;
+  font-weight: 400;
+  font-size: 1.375rem;
+  border-right: 37.5px solid dodgerblue;
+  border-left: 37.5px solid dodgerblue;
+}
+
+.devInAstronomyAndAstroPhysics,
+.myDevPortfolio,
+.devGalaxies {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 0.0125rem;
+  font-weight: bold;
+  font-size: 1.375rem;
+  border-right: 37.5px solid dodgerblue;
+  border-left: 37.5px solid dodgerblue;
+}
+
+.theFifties,
+.theSixties,
+.theSeventies,
+.theEighties,
+.the2000s {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 0.0125rem;
+  font-weight: 400;
+  font-size: 1.375rem;
+  border-right: 37.5px solid dodgerblue;
+  border-left: 37.5px solid dodgerblue;
+}
+
+.article-title {
+  margin: 0px;
+  padding: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bolder;
+  font-size: 1.75rem;
+}
+
+.year {
+  margin: 0px;
+  padding: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.article-para {
+  margin: 0px;
+  padding: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.article-img {
+  grid-column: 4/5;
+  padding: 8px;
+}
+
+.imgCaptions,
+.imgCaptions a {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  margin: 0px;
+  padding: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  font-style: italic;
+  line-height: 1.75;
+}
+
+@media screen and (max-width: 750px) {
+  .aBriefHistoryOfSpaceExploration span {
+    font-size: 2rem;
+  }
+
+  .aBriefHistoryOfAstronomy span {
+    font-size: 2rem;
+  }
+
+  .devInAstro {
+    font-size: 2rem;
+  }
+
+  .ourSolarSystem {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .aBriefHistoryOfSpaceExploration span {
+    font-size: 1.75rem;
+  }
+
+  .aBriefHistoryOfAstronomy span {
+    font-size: 1.75rem;
+  }
+
+  .devInAstro {
+    font-size: 1.75rem;
+  }
+
+  .ourSolarSystem {
+    font-size: 1.75rem;
+  }
+
+  .article-title {
+    font-size: 1.5rem;
+  }
+
+  .whereItAllBegan,
+  .theFifties,
+  .theSixties,
+  .theSeventies,
+  .theEighties,
+  .the2000s,
+  .devInAstronomyAndAstroPhysics,
+  .myDevPortfolio,
+  .devGalaxies {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .aBriefHistoryOfSpaceExploration,
+  .aBriefHistoryOfSpaceExploration span {
+    font-size: 1.5rem;
+    display: block;
+  }
+
+  .aBriefHistoryOfAstronomy,
+  .aBriefHistoryOfAstronomy span {
+    font-size: 1.5rem;
+    display: block;
+  }
+
+  .devInAstro,
+  .devInAstro span {
+    font-size: 1.5rem;
+    display: block;
+  }
+
+  .devInAstronomyAndAstroPhysics span {
+    display: block;
+  }
+
+  .article-title {
+    font-size: 1.375rem;
+  }
+
+  .whereItAllBegan,
+  .theFifties,
+  .theSixties,
+  .theSeventies,
+  .theEighties,
+  .the2000s,
+  .devInAstronomyAndAstroPhysics,
+  .myDevPortfolio,
+  .devGalaxies {
+    font-size: 1.125rem;
+  }
+}
+
+.dropdown-info,
+.dropdown-info1,
+.dropdown-info2,
+.dropdown-info3,
+.dropdown-info4,
+.dropdown-info5,
+.dropdown-info6,
+.dropdown-info7,
+.dropdown-info8,
+.dropdown-info9,
+.dropdown-info10,
+.dropdown-info11,
+.dropdown-info12,
+.dropdown-info13,
+.dropdown-info14 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 25px;
+  margin: auto;
+  align-items: center;
+}
+
+.dropdownburger div,
+.dropdownburger1 div,
+.dropdownburger2 div,
+.dropdownburger3 div,
+.dropdownburger4 div,
+.dropdownburger5 div,
+.dropdownburger6 div,
+.dropdownburger7 div,
+.dropdownburger8 div,
+.dropdownburger9 div,
+.dropdownburger10 div,
+.dropdownburger11 div,
+.dropdownburger12 div,
+.dropdownburger13 div,
+.dropdownburger14 div {
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  margin: 10px;
+  transition: 0.375s ease;
+  cursor: pointer;
+}
+
+.dropdown-article,
+.dropdown-article1,
+.dropdown-article2,
+.dropdown-article3,
+.dropdown-article4,
+.dropdown-article5,
+.dropdown-article6,
+.dropdown-article7,
+.dropdown-article8,
+.dropdown-article9,
+.dropdown-article10,
+.dropdown-article11,
+.dropdown-article12,
+.dropdown-article13,
+.dropdown-article14 {
+  /*background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+    height: 0;
+    align-items: right;
+    justify-content: center;
+    transition: 2s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 0;
+    /*box-shadows: 0px 10px 60px dodgerblue;*/
+
+  background-color: dodgerblue;
+  right: 0px;
+  height: 2px;
+  width: 100%;
+  color: white;
+  transition: all 2s ease;
+  overflow-x: hidden;
+  box-shadow: 0px 10px 60px dodgerblue;
+}
+
+.dropdownburger-active,
+.dropdownburger-active1,
+.dropdownburger-active2,
+.dropdownburger-active3,
+.dropdownburger-active4,
+.dropdownburger-active5,
+.dropdownburger-active6,
+.dropdownburger-active7,
+.dropdownburger-active8,
+.dropdownburger-active9,
+.dropdownburger-active10,
+.dropdownburger-active11,
+.dropdownburger-active12,
+.dropdownburger-active13,
+.dropdownburger-active14 {
+  height: 800px;
+}
+
+.dropdowntoggle .dropdownline1 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle .dropdownline2 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle1 .dropdownline11 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle1 .dropdownline21 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle2 .dropdownline12 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle2 .dropdownline22 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle3 .dropdownline13 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle3 .dropdownline23 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle4 .dropdownline14 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle4 .dropdownline24 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle5 .dropdownline15 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle5 .dropdownline25 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle6 .dropdownline16 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle6 .dropdownline26 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle7 .dropdownline17 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle7 .dropdownline27 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle8 .dropdownline18 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle8 .dropdownline28 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle9 .dropdownline19 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle9 .dropdownline29 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle10 .dropdownline110 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle10 .dropdownline210 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle11 .dropdownline111 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle11 .dropdownline211 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle12 .dropdownline112 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle12 .dropdownline212 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle13 .dropdownline113 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle13 .dropdownline213 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle14 .dropdownline114 {
+  transform: rotate(-45deg) translate(-2.5px, 6px);
+  background-color: dodgerblue;
+}
+
+.dropdowntoggle14 .dropdownline214 {
+  transform: rotate(45deg) translate(-2.5px, -6px);
+  background-color: dodgerblue;
+}
+
+.solarsys {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.star,
+.planet,
+.asteroidbelt,
+.asteroidbelt1,
+.asteroidbelt2,
+.asteroidbelt3,
+.asteroidbelt4,
+.asteroidbelt5,
+.asteroidbelt6,
+.asteroidbelt7,
+.moon,
+.moon2 {
+  width: var(--size);
+  height: var(--size);
+}
+
+/* 
+  True Time Scaled
+  mercury orbit = 2,100 hours /877 = 2.3945268s
+  venus orrbit = 5,390 hours /877 = 6.14595211s
+  earth orbit = 8,770 hours /877 = 10s
+  mars orbit = 16,500 hours /877 = 18.8141391s
+  jupiter = 100,000 hours /877 = 114.025086s
+  saturn = 260,000 hours /877 = 296.465222s
+  uranus = 740,000 hours /877 = 843.785633s
+  neptune = 1,440,000 hours /877 = 1641.96123s
+  pluto = 2,170,000 hours /877 = 2474.34436s
+  */
+
+.solarsys-orbit {
+  width: 400px;
+  height: 400px;
+  box-shadow: inset 0px 0px 24px gainsboro;
+  border-radius: 100%;
+  background-size: 150%;
+}
+
+.asteroidbelt-orbit {
+  width: 210px;
+  height: 210px;
+  box-shadow: inset 0px 0px 12px gainsboro;
+  border-radius: 100%;
+  background-size: 150%;
+  position: absolute;
+  transition: all 0.5s;
+}
+
+/*.gridline1 {
+    width: 210px;
+    height: 210px;
+    box-shadow: inset 0px 0px 24px gainsboro;
+    border-radius: 100%;
+    background-size: 150%;
+    position: absolute;
+    transition: all 0.5s;
+    animation: orbitalX 4s infinite linear;
+  }
+  
+  .gridline2 {
+    width: 400px;
+    height: 400px;
+    box-shadow: inset 0px 0px 24px gainsboro;
+    border-radius: 100%;
+    background-size: 150%;
+    position: absolute;
+    transition: all 0.5s;
+    animation: orbitalY 4s infinite linear;
+  }
+  
+  @keyframes orbitalX {
+    from {
+      transform: rotate3d(0, 0, 0, 0deg);
+    }
+    to {
+      transform: rotate3d(-1, -1, -1, 360deg);
+    }
+  }
+  
+  @keyframes orbitalY {
+    from {
+      transform: rotate3d(-1, 0, 1, 0deg);
+    }
+    to {
+      transform: rotate3d(1, 0, -1, -360deg);
+    }
+  } */
+
+.sun {
+  background: linear-gradient(to right, gold, yellow);
+  box-shadow: 0px 0px 40px yellow;
+  --size: 40px;
+  --push: 0px;
+  border-radius: 100%;
+  position: absolute;
+  animation: sunlight 4s linear infinite;
+  transition: all 0.25s;
+}
+
+.sun:hover {
+  --size: 55px;
+  z-index: 1;
+}
+
+.mercury {
+  background: linear-gradient(gray, darkgray);
+  box-shadow: 0px 0px 60px gray;
+  --size: 4px;
+  --push: -35px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 2.3945268s infinite linear;
+  transition: all 0.25s;
+}
+
+.mercury:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+.venus {
+  background: linear-gradient(darkorange, gainsboro);
+  box-shadow: 0px 0px 60px darkorange;
+  --size: 8px;
+  --push: -55px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 6.14595211s infinite linear;
+  transition: all 0.25s;
+}
+
+.venus:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+.earth {
+  background: linear-gradient(dodgerblue, green);
+  box-shadow: 0px 0px 60px dodgerblue;
+  --size: 6px;
+  --push: -75px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 10s infinite linear;
+  transition: all 0.25s;
+}
+
+.earth:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+.moon {
+  top: 40%;
+  left: 40%;
+  background: silver;
+  box-shadow: 0px 0px 60px silver;
+  --size: 3px;
+  --push: -8px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 0.738882554s infinite linear;
+  transition: all 0.0001s;
+  visibility: initial;
+}
+
+.earth:hover .moon {
+  visibility: hidden;
+}
+
+.moon2 {
+  top: 40%;
+  left: 40%;
+  background: silver;
+  box-shadow: 0px 0px 60px silver;
+  --size: 8px;
+  --push: -30px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 0.738882554s infinite linear;
+  visibility: hidden;
+  transition: all 0.0001s;
+}
+
+.earth:hover .moon2 {
+  visibility: initial;
+  z-index: 1;
+}
+
+.mars {
+  background: linear-gradient(crimson, darkred);
+  box-shadow: 0px 0px 60px crimson;
+  --size: 6px;
+  --push: -95px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 18.8141391s infinite linear;
+  transition: all 0.25s;
+}
+
+.mars:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+.asteroidbelt {
+  background: black;
+  box-shadow: 0px 0px 60px black;
+  --size: 3px;
+  --push: -105px;
+  border-radius: 100%;
+  position: absolute;
+  animation: asteroidbeltx 9s infinite linear;
+}
+
+.asteroidbelt1 {
+  background: black;
+  box-shadow: 0px 0px 60px black;
+  --size: 3px;
+  --push: 105px;
+  border-radius: 100%;
+  position: absolute;
+  animation: asteroidbeltx 9s infinite linear;
+}
+
+.asteroidbelt2 {
+  background: black;
+  box-shadow: 0px 0px 60px black;
+  --size: 3px;
+  --push: -105px;
+  border-radius: 100%;
+  position: absolute;
+  animation: asteroidbelty 9s infinite linear;
+}
+
+.asteroidbelt3 {
+  background: black;
+  box-shadow: 0px 0px 60px black;
+  --size: 3px;
+  --push: 105px;
+  border-radius: 100%;
+  position: absolute;
+  animation: asteroidbelty 9s infinite linear;
+}
+
+.asteroidbelt4 {
+  background: black;
+  box-shadow: 0px 0px 60px black;
+  --size: 3px;
+  --push: -105px;
+  border-radius: 100%;
+  position: absolute;
+  animation: asteroidbelty 8s infinite linear;
+}
+
+.asteroidbelt5 {
+  background: black;
+  box-shadow: 0px 0px 60px black;
+  --size: 3px;
+  --push: 105px;
+  border-radius: 100%;
+  position: absolute;
+  animation: asteroidbelty 8s infinite linear;
+}
+
+.asteroidbelt6 {
+  background: black;
+  box-shadow: 0px 0px 60px black;
+  --size: 3px;
+  --push: -105px;
+  border-radius: 100%;
+  position: absolute;
+  animation: asteroidbeltx 8s infinite linear;
+}
+
+.asteroidbelt7 {
+  background: black;
+  box-shadow: 0px 0px 60px black;
+  --size: 3px;
+  --push: 105px;
+  border-radius: 100%;
+  position: absolute;
+  animation: asteroidbeltx 8s infinite linear;
+}
+
+.jupiter {
+  background: linear-gradient(
+    #b2927b,
+    coral,
+    #b2927b,
+    gainsboro,
+    #b2927b,
+    #b2927b
+  );
+  box-shadow: 0px 0px 60px coral;
+  --size: 20px;
+  --push: -125px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 114.025086s infinite linear;
+  transition: all 0.25s;
+}
+
+.jupiter:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+.saturn {
+  background: linear-gradient(
+    #b2927b,
+    #b2927b,
+    saddlebrown,
+    gainsboro,
+    burlywood
+  );
+  box-shadow: 0px 0px 60px saddlebrown;
+  --size: 12px;
+  --push: -145px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 296.465222s infinite linear;
+  transition: all 0.25s;
+}
+
+.saturn:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+.saturn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180%;
+  height: 6px;
+  border: 2px solid saddlebrown;
+  border-top: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(30deg);
+}
+
+.uranus {
+  background: linear-gradient(dodgerblue, blue, mediumspringgreen, blue);
+  box-shadow: 0px 0px 60px lightskyblue;
+  --size: 10px;
+  --push: -165px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 843.785633s infinite linear;
+  transition: all 0.25s;
+}
+
+.uranus:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+.uranus::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180%;
+  height: 4px;
+  border: 1px solid gray;
+  border-top: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.neptune {
+  background: linear-gradient(blue, blue, gainsboro, blue);
+  box-shadow: 0px 0px 60px blue;
+  --size: 10px;
+  --push: -182.5px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 1641.96123s infinite linear;
+  transition: all 0.25s;
+}
+
+.neptune:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+.pluto {
+  background: linear-gradient(gainsboro, darkred);
+  box-shadow: 0px 0px 60px chocolate;
+  --size: 4px;
+  --push: -195px;
+  border-radius: 100%;
+  position: absolute;
+  animation: orbit 2474.34436s infinite linear;
+  transition: all 0.25s;
+}
+
+.pluto:hover {
+  --size: 30px;
+  z-index: 1;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0) translateY(var(--push));
+  }
+
+  to {
+    transform: rotate(360deg) translateY(var(--push));
+  }
+}
+
+@keyframes asteroidbeltx {
+  from {
+    transform: rotate(0) translateY(var(--push));
+  }
+
+  to {
+    transform: rotate(360deg) translateY(var(--push));
+  }
+}
+
+@keyframes asteroidbelty {
+  from {
+    transform: rotate(0) translateX(var(--push));
+  }
+
+  to {
+    transform: rotate(360deg) translateX(var(--push));
+  }
+}
+
+@keyframes sunlight {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .solarsys {
+    height: initial;
+  }
+
+  .solarsys-orbit {
+    width: 350px;
+    height: 350px;
+  }
+
+  .sun {
+    --size: 35px;
+    --push: -0px;
+  }
+
+  .mercury {
+    --push: -30px;
+  }
+
+  .venus {
+    --push: -42.5px;
+  }
+
+  .earth {
+    --push: -55px;
+  }
+
+  .mars {
+    --push: -67.5px;
+  }
+
+  .asteroidbelt-orbit {
+    width: 160px;
+    height: 160px;
+  }
+
+  .asteroidbelt {
+    --push: -80px;
+  }
+
+  .asteroidbelt1 {
+    --push: 80px;
+  }
+
+  .asteroidbelt2 {
+    --push: -80px;
+  }
+
+  .asteroidbelt3 {
+    --push: 80px;
+  }
+
+  .asteroidbelt4 {
+    --push: -80px;
+  }
+
+  .asteroidbelt5 {
+    --push: 80px;
+  }
+
+  .asteroidbelt6 {
+    --push: -80px;
+  }
+
+  .asteroidbelt7 {
+    --push: 80px;
+  }
+
+  .jupiter {
+    --push: -95px;
+  }
+
+  .saturn {
+    --push: -117.5px;
+  }
+
+  .uranus {
+    --push: -142.5px;
+  }
+
+  .neptune {
+    --push: -160px;
+  }
+
+  .pluto {
+    --push: -170px;
+  }
+}
+
+.captionTrueTimeScaled {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  font-style: italic;
+  line-height: 1.75;
+  text-align: center;
+}
+
+@media screen and (max-width: 340px) {
+  .article-title {
+    font-size: 1.125rem;
+  }
+
+  .year {
+    font-size: 0.8rem;
+  }
+
+  .article-para {
+    font-size: 1rem;
+  }
+
+  .purpose,
+  .aboutMe {
+    font-size: 1.375rem;
+  }
+}
+
+.contactform1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactform2 {
+  display: none;
+}
+
+.contactform3 {
+  display: none;
+}
+
+.contactform4 {
+  display: none;
+}
+
+@media screen and (max-width: 680px) {
+  .contactform1 {
+    display: none;
+  }
+
+  .contactform2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .contactform1 {
+    display: none;
+  }
+
+  .contactform2 {
+    display: none;
+  }
+
+  .contactform3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .contactform1 {
+    display: none;
+  }
+
+  .contactform2 {
+    display: none;
+  }
+
+  .contactform3 {
+    display: none;
+  }
+
+  .contactform4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

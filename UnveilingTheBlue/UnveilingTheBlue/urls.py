@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from BluePages.views import MovieView
+from BluePages.views import BlueView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('', MovieView.as_view()),
+    path('', BlueView.as_view()),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
