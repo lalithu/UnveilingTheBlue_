@@ -1,3 +1,3 @@
 # Unveiling the Blue
 
-© Lalith Uriti, 2020 | UnveilingTheBlue\_
+© Lalith Uriti, 2020 |
