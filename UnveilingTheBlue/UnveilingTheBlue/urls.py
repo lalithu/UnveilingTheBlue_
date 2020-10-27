@@ -13,12 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
-from BluePages.views import BlueView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from BluePages import views
+from django.urls import path
+'''from BluePages.views import BlueView'''
 
+'''
 urlpatterns = [
     path('', BlueView.as_view()),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+'''
+
+urlpatterns = [
+    path('', views.home, name="index"),
+    path('astronomy.html', views.astronomy, name="astronomy"),
+    path('spaceExploration.html', views.spaceExploration, name="spaceExploration"),
+    path('astrodev.html', views.astrodev, name="astrodev"),
+    path('blog.html', views.blog, name="blog"),
+    path('about.html', views.about, name="about"),
+]

@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut-icon" type="images/png" href="images/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300&display=swap" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Unveiling the Blue</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="debug" href="daebug.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="left-side-image">
+                    <div class="logo">
+                        <a href="{% url 'index' %}">Unveiling the Blue</a>
+                        <!--<a href="index.html"><img src="images/Unveiling the Blue.jpg" alt="" style="width: 196.5px; height: 54.45px;"></a>-->
+                    </div>
+                </div>
+
+                <div class="right-side">
+                    <div class="nav-link-wrapper">
+                        <a href="{% url 'index' %}">Home</a>
+                    </div>
+
+                    <div class="nav-link-wrapper">
+                        <a href="{% url 'astronomy' %}">Astronomy</a>
+                    </div>
+
+                    <div class="nav-link-wrapper">
+                        <a href="{% url 'spaceExploration' %}">Space Exploration</a>
+                    </div>
+
+                    <div class="nav-link-wrapper">
+                        <a href="{% url 'astrodev' %}">Research</a>
+                    </div>
+
+                    <div class="nav-link-wrapper">
+                        <a href="{% url 'blog' %}">Blog</a>
+                    </div>
+
+                    <div class="nav-link-wrapper">
+                        <a href="{% url 'about' %}">Contact</a>
+                    </div>
+                </div>
+
+                <div class="burger">
+                    <div class="line1"></div>
+                    <!--<div class="line2"></div>-->
+                    <div class="line2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-image">
+            <div class="home-images-wrapper">
+                <!--<img class="home-image-wrapper"src="images/m87.jpg" alt="Image taken of blackhole at the center of galaxy M87">-->
+                <div class="home-image-wrapper"></div>
+            </div>
+        </div>
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+        <div class="footer">
+            <div id="footerText">&copy; Unveiling the Blue by Lalith Uriti 2020</div>
+
+            <div class="footer-leftside">
+                <div class="instagramIcon">
+                    <a href="https://www.instagram.com/unveilingtheblue_/" target="_blank"><i class="fa fa-instagram"
+                            style="font-size: 24px"></i></a>
+                    <!--<a href="https://www.instagram.com/" target="_blank"><img src="images/instagramIcon.png" alt="Unveiling the Blue Instagram"></a>-->
+                </div>
+
+                <div class="twitterIcon">
+                    <a href="https://twitter.com/home" target="_blank"><i class="fa fa-twitter"
+                            style="font-size: 24px"></i></a>
+                    <!--<a href="https://twitter.com/home" target="_blank"><img src="images/twitterIcon6.png" alt="Unveiling the Blue Twitter"></a>-->
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'css/app.js' %}"></script>
+</body>
+
+</html>
