@@ -1125,7 +1125,8 @@ img {
 .aBriefHistoryOfSpaceExploration,
 .aBriefHistoryOfAstronomy,
 .devInAstro,
-.ourSolarSystem {
+.ourSolarSystem,
+.contactTitle {
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -1258,6 +1259,10 @@ img {
   .ourSolarSystem {
     font-size: 2rem;
   }
+
+  .contactTitle {
+    font-size: 2rem;
+  }
 }
 
 @media screen and (max-width: 670px) {
@@ -1274,6 +1279,10 @@ img {
   }
 
   .ourSolarSystem {
+    font-size: 1.75rem;
+  }
+
+  .contactTitle {
     font-size: 1.75rem;
   }
 
@@ -1311,6 +1320,10 @@ img {
   .devInAstro span {
     font-size: 1.5rem;
     display: block;
+  }
+
+  .contactTitle {
+    font-size: 1.5rem;
   }
 
   .devInAstronomyAndAstroPhysics span {
@@ -2154,72 +2167,127 @@ pluto = 2,170,000 hours /877 = 2474.34436s
   }
 }
 
-.contactform1 {
+.thankyou-title {
+  margin: auto;
+  padding: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bolder;
+  font-size: 1.25rem;
+}
+
+.greatday-thingy {
+  margin: auto;
+  padding: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  box-sizing: border-box;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  resize: vertical;
+  z-index: 9000;
+  position: relative;
+  background-color: transparent;
+  color: white;
+  box-shadow: 0px 0px 40px dodgerblue;
+  transition: all 0.5s;
+}
+
+textarea {
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white;
+}
+
+.col-12 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  visibility: hidden;
+  justify-content: center;
+  width: 100px;
+  height: 35px;
+  background: transparent;
+  z-index: 9000;
+  position: relative;
+  margin: auto;
+  transition: all 0.5s;
+  color: white;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0px 0px 40px dodgerblue;
+  margin-bottom: 20px;
 }
 
-.contactform2 {
-  display: none;
-  visibility: hidden;
+button[type="submit"] {
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.5s;
+  border: none;
+  height: 35px;
+  width: 100px;
+  color: white;
 }
 
-.contactform3 {
-  display: none;
-  visibility: hidden;
+.col-12:hover {
+  background: white;
+  color: dodgerblue;
+  box-shadow: 0px 0px 40px white;
 }
 
-.contactform4 {
-  display: none;
-  visibility: hidden;
+button:hover {
+  color: dodgerblue;
 }
 
-@media screen and (max-width: 680px) {
-  .contactform1 {
-    display: none;
-  }
-
-  .contactform2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+input:hover {
+  background: white;
+  color: dodgerblue;
+  box-shadow: 0px 0px 40px white;
 }
 
-@media screen and (max-width: 410px) {
-  .contactform1 {
-    display: none;
-  }
-
-  .contactform2 {
-    display: none;
-  }
-
-  .contactform3 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+textarea:hover {
+  background: white;
+  color: dodgerblue;
+  box-shadow: 0px 0px 40px white;
 }
 
-@media screen and (max-width: 370px) {
-  .contactform1 {
-    display: none;
-  }
+input:hover::-webkit-input-placeholder {
+  color: dodgerblue;
+}
 
-  .contactform2 {
-    display: none;
-  }
-
-  .contactform3 {
-    display: none;
-  }
-
-  .contactform4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+textarea:hover::-webkit-input-placeholder {
+  color: dodgerblue;
 }

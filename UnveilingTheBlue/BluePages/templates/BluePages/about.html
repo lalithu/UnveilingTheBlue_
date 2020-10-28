@@ -10,28 +10,71 @@
     </div>
 </div>
 
-<div class="contactform1">
-    <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdSqtVyYQKZ63idhF_HpqLORiQA3ZbMhLlYNx6-wC9pXYteDA/viewform?embedded=true"
-        width="700" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<div>
+    <h1 class="contactTitle">Contact</h1>
 </div>
 
-<div class="contactform2">
-    <iframe <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdSqtVyYQKZ63idhF_HpqLORiQA3ZbMhLlYNx6-wC9pXYteDA/viewform?embedded=true"
-        width="390" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-</div>
+<article>
+    {% if message_name %}
+    <h1 class="thankyou-title">Thanks {{ message_name }}!</h1>
+    <h2 class="greatday-thingy">Have a great day!</h2>
+    <div class="solarsys">
+        <div class="solarsys">
+            <div class="gridline1"></div>
+            <div class="gridline2"></div>
+            <div class="solarsys-orbit"></div>
+            <div class="asteroidbelt-orbit"></div>
+            <div class="star sun"></div>
+            <div class="planet mercury"></div>
+            <div class="planet venus"></div>
+            <div class="planet earth">
+                <div class="moon"></div>
+                <div class="moon2"></div>
+            </div>
+            <div class="planet mars"></div>
+            <div class="asteroidbelt"></div>
+            <div class="asteroidbelt1"></div>
+            <div class="asteroidbelt2"></div>
+            <div class="asteroidbelt3"></div>
+            <div class="asteroidbelt4"></div>
+            <div class="asteroidbelt5"></div>
+            <div class="asteroidbelt6"></div>
+            <div class="asteroidbelt7"></div>
+            <div class="planet jupiter"></div>
+            <div class="planet saturn"></div>
+            <div class="planet uranus"></div>
+            <div class="planet neptune"></div>
+            <div class="planet pluto"></div>
+        </div>
+    </div>
+    <div>
+        <h1 class="captionTrueTimeScaled">True Time Scaled</h1>
+    </div>
+</article>
 
-<div class="contactform3">
-    <iframe <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdSqtVyYQKZ63idhF_HpqLORiQA3ZbMhLlYNx6-wC9pXYteDA/viewform?embedded=true"
-        width="375" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-</div>
+{% else %}
+<form action="{%url 'about' %}" method="POST">
+    {% csrf_token %}
+    <h1 class="article-title">Name</h1>
+    <div class="name-input">
+        <input type="text" name="message-name" class="nameClass" placeholder="Your Name">
+    </div>
 
-<div class="contactform4">
-    <iframe <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdSqtVyYQKZ63idhF_HpqLORiQA3ZbMhLlYNx6-wC9pXYteDA/viewform?embedded=true"
-        width="300" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-</div>
+    <h1 class="article-title">Email</h1>
+    <div class="email-input">
+        <input type="email" name="message-email" class="emailClass" placeholder="Your Email">
+    </div>
+
+    <h1 class="article-title">Message</h1>
+    <div class="message-textarea">
+        <textarea name="message" class="messageClass" placeholder="Your Message"></textarea>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="button">Submit</button>
+    </div>
+</form>
+{% endif %}
+</article>
 
 {% endblock %}

@@ -124,4 +124,13 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# Email Settings, python3 -m smtpd -n -c DebuggingServer localhost:1025
+EMAIL_HOST = 'localhost'  # 'smtp.gmail.com'
+EMAIL_PORT = '1025'  # '587'
+EMAIL_HOST_USER = ''  # 'lalithuriti@gmail.com'
+EMAIL_HOST_PASSWORD = ''  # 'lalithuriti@gmail.com'
+EMAIL_USE_TLS = False  # 'True'
+# EMAIL_USE_SSL = False
+
+
 DIRECTOR = 'Lalith Uriti'
