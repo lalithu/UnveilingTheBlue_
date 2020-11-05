@@ -39,8 +39,21 @@ def home(request):
     return render(request, 'BluePages/index.html', {})
 
 
-def astronomy(request):
+def simulator(request):
+    return render(request, 'BluePages/simulator.html', {})
 
+
+def spaceExploration(request):
+    return render(request, 'BluePages/spaceExploration.html', {})
+
+
+def astrodev(request):
+    return render(request, 'BluePages/astrodev.html', {})
+
+
+def realtime(request):
+
+    # SolarSys Code
     current_time = datetime.datetime.now()
     print(current_time)
 
@@ -58,6 +71,7 @@ def astronomy(request):
 
     solarsys_div = plot(solarsys.set_view(45 * u.deg, -120 *
                                           u.deg, 4 * u.km), output_type='div')
+    # SolarSys Code
 
     # Roadster Code
     EPOCH = Time("2018-02-18 12:00:00", scale="tdb")
@@ -75,25 +89,13 @@ def astronomy(request):
     frame.plot_body_orbit(Earth, EPOCH)
     frame.plot_body_orbit(Mars, EPOCH)
 
-    frame.plot_ephem(roadster, EPOCH, label="SpaceX Roadster", color="black")
+    frame.plot_ephem(
+        roadster, EPOCH, label="SpaceX Roadster", color="black")
 
     frame_div = plot(frame.set_view(45 * u.deg, -120 *
                                     u.deg, 4 * u.km), output_type='div')
     # Roadster Code
-
-    return render(request, 'BluePages/astronomy.html', context={'frame_div': frame_div, 'solarsys_div': solarsys_div})
-
-
-def spaceExploration(request):
-    return render(request, 'BluePages/spaceExploration.html', {})
-
-
-def astrodev(request):
-    return render(request, 'BluePages/astrodev.html', {})
-
-
-def blog(request):
-    return render(request, 'BluePages/blog.html', {})
+    return render(request, 'BluePages/realtime.html',  context={'frame_div': frame_div, 'solarsys_div': solarsys_div})
 
 
 def about(request):

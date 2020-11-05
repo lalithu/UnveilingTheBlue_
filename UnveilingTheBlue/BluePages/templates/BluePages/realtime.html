@@ -1,0 +1,39 @@
+{% extends 'BLuePages/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="home-image">
+    <div class="home-images-wrapper">
+        <!--<img class="home-image-wrapper"src="images/m87.jpg" alt="Image taken of blackhole at the center of galaxy M87">-->
+        <div class="home-image-wrapper-Blog"></div>
+    </div>
+</div>
+
+<div>
+    <h1 class="aBriefHistoryOfAstronomy"><span>Real Time Positioning</span><span> and Cool Stuffs</span></h1>
+</div>
+
+<div>
+    <h2 class="whereItAllBegan">Real Time Positioning</h2>
+</div>
+
+<article>
+    <div class="article-title">Our Solar System in Real Time</div>
+    {% autoescape off %}
+    {{ solarsys_div }}
+    {% endautoescape %}
+</article>
+
+<div>
+    <h2 class="whereItAllBegan">Cool Stuffs</h2>
+</div>
+
+<article>
+    <div class="article-title">SpaceX Roadster Roadtrip</div>
+    {% autoescape off %}
+    {{ frame_div }}
+    {% endautoescape %}
+</article>
+
+{% endblock %}

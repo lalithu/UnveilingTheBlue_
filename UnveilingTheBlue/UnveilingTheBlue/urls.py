@@ -28,9 +28,9 @@ urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns = [
     path('', views.home, name="index"),
-    path('astronomy.html', views.astronomy, name="astronomy"),
+    path('simulator.html', views.simulator, name="simulator"),
     path('spaceExploration.html', views.spaceExploration, name="spaceExploration"),
     path('astrodev.html', views.astrodev, name="astrodev"),
-    path('blog.html', views.blog, name="blog"),
+    path('realtime.html', views.realtime, name="realtime"),
     path('about.html', views.about, name="about"),
 ]
