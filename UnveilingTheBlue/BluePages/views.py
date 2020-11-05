@@ -73,15 +73,14 @@ def simulator(request):
         date_lst_launch = datetime_launch.split()
         date_lst_arrival = datetime_arrival.split()
 
-        if not date_lst_launch or not date_lst_arrival:
-            error_message = "Your Launch and Arrival Dates don't seem to be working. Try again."
+        if not date_lst_launch or not date_lst_arrival or datetime_launch[0] == " " or datetime_launch[-1] == " " or datetime_arrival[0] == " " or datetime_arrival[-1] == " ":
+            error_message = "Your Launch and Arrival Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
         else:
             dateL = date_lst_launch[0]
             dateA = date_lst_arrival[0]
 
         # Validate Launch and Arrival Dates
-
         def validate(date_text):
             try:
                 datetime.datetime.strptime(date_text, '%Y-%m-%d')
@@ -166,7 +165,7 @@ def simulator(request):
 
             return render(request, 'BluePages/simulator.html', {'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'plotter_div': plotter_div})
         else:
-            error_message = "Your Launch and Arrival Dates don't seem to be working. Try again."
+            error_message = "Your Launch and Arrival Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
 
     else:
