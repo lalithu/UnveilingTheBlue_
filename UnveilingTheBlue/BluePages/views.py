@@ -69,6 +69,19 @@ def simulator(request):
         datetime_arrival = arrival_date
         # print(datetime_arrival)
 
+        # Split Date and Time for Validation
+        date_lst_launch = datetime_launch.split()
+        date_lst_arrival = datetime_arrival.split()
+
+        if not date_lst_launch or not date_lst_arrival:
+            error_message = "Your Launch and Arrival Dates don't seem to be working. Try again."
+            return render(request, 'BluePages/simulator.html', {'error_message': error_message})
+        else:
+            dateL = date_lst_launch[0]
+            dateA = date_lst_arrival[0]
+
+        # Validate Launch and Arrival Dates
+
         def validate(date_text):
             try:
                 datetime.datetime.strptime(date_text, '%Y-%m-%d')
@@ -76,7 +89,7 @@ def simulator(request):
             except ValueError:
                 return False
 
-        if validate(datetime_launch) and validate(datetime_arrival):
+        if validate(dateL) and validate(dateA):
             # Curiosity: 2011-11-26 15:02, Perserverance: 2020-6-30 11:50
             date_launch = time.Time(datetime_launch, scale="utc").tdb
             # Curiosity: 2012-08-06 05:17 Perserverance: 2021-2-18 12:30
@@ -153,51 +166,11 @@ def simulator(request):
 
             return render(request, 'BluePages/simulator.html', {'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'plotter_div': plotter_div})
         else:
-            return render(request, 'BluePages/simulator.html', {})
+            error_message = "Your Launch and Arrival Dates don't seem to be working. Try again."
+            return render(request, 'BluePages/simulator.html', {'error_message': error_message})
 
     else:
-        # SolarSys Code
-        current_time1 = datetime.datetime.now()
-        print(current_time1)
-
-        EPOCH1 = Time(str(current_time1), scale="tdb")
-        solarsys = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
-
-        solarsys.plot_body_orbit(Mercury, EPOCH1)
-        solarsys.plot_body_orbit(Venus, EPOCH1)
-        solarsys.plot_body_orbit(Earth, EPOCH1)
-        solarsys.plot_body_orbit(Mars, EPOCH1)
-        '''solarsys.plot_body_orbit(Jupiter, EPOCH1)
-        solarsys.plot_body_orbit(Saturn, EPOCH1)
-        solarsys.plot_body_orbit(Uranus, EPOCH1)
-        solarsys.plot_body_orbit(Neptune, EPOCH1)'''
-
-        solarsys_div = plot(solarsys.set_view(45 * u.deg, -120 *
-                                              u.deg, 4 * u.km), output_type='div')
-
-        # Roadster Code
-        EPOCH = Time("2018-02-18 12:00:00", scale="tdb")
-
-        roadster = Ephem.from_horizons(
-            "SpaceX Roadster",
-            epochs=time_range(EPOCH, end=EPOCH + 360 * u.day),
-            attractor=Sun,
-            plane=Planes.EARTH_ECLIPTIC,
-            id_type="majorbody",
-        )
-
-        frame = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
-
-        frame.plot_body_orbit(Earth, EPOCH)
-        frame.plot_body_orbit(Mars, EPOCH)
-
-        frame.plot_ephem(
-            roadster, EPOCH, label="SpaceX Roadster", color="black")
-
-        frame_div = plot(frame.set_view(45 * u.deg, -120 *
-                                        u.deg, 4 * u.km), output_type='div')
-
-        return render(request, 'BluePages/simulator.html', {'frame_div': frame_div, 'solarsys_div': solarsys_div})
+        return render(request, 'BluePages/simulator.html', {})
 
 
 def spaceExploration(request):
