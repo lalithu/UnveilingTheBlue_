@@ -146,7 +146,48 @@ def simulator(request):
         return render(request, 'BluePages/simulator.html', {'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'plotter_div': plotter_div})
 
     else:
-        return render(request, 'BluePages/simulator.html', {})
+        # SolarSys Code
+        current_time1 = datetime.datetime.now()
+        print(current_time1)
+
+        EPOCH1 = Time(str(current_time1), scale="tdb")
+        solarsys = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
+
+        solarsys.plot_body_orbit(Mercury, EPOCH1)
+        solarsys.plot_body_orbit(Venus, EPOCH1)
+        solarsys.plot_body_orbit(Earth, EPOCH1)
+        solarsys.plot_body_orbit(Mars, EPOCH1)
+        '''solarsys.plot_body_orbit(Jupiter, EPOCH1)
+        solarsys.plot_body_orbit(Saturn, EPOCH1)
+        solarsys.plot_body_orbit(Uranus, EPOCH1)
+        solarsys.plot_body_orbit(Neptune, EPOCH1)'''
+
+        solarsys_div = plot(solarsys.set_view(45 * u.deg, -120 *
+                                              u.deg, 4 * u.km), output_type='div')
+
+        # Roadster Code
+        EPOCH = Time("2018-02-18 12:00:00", scale="tdb")
+
+        roadster = Ephem.from_horizons(
+            "SpaceX Roadster",
+            epochs=time_range(EPOCH, end=EPOCH + 360 * u.day),
+            attractor=Sun,
+            plane=Planes.EARTH_ECLIPTIC,
+            id_type="majorbody",
+        )
+
+        frame = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
+
+        frame.plot_body_orbit(Earth, EPOCH)
+        frame.plot_body_orbit(Mars, EPOCH)
+
+        frame.plot_ephem(
+            roadster, EPOCH, label="SpaceX Roadster", color="black")
+
+        frame_div = plot(frame.set_view(45 * u.deg, -120 *
+                                        u.deg, 4 * u.km), output_type='div')
+
+        return render(request, 'BluePages/simulator.html', {'frame_div': frame_div, 'solarsys_div': solarsys_div})
 
 
 def spaceExploration(request):
@@ -158,7 +199,6 @@ def astrodev(request):
 
 
 def realtime(request):
-
     # SolarSys Code
     current_time = datetime.datetime.now()
     print(current_time)
@@ -177,7 +217,6 @@ def realtime(request):
 
     solarsys_div = plot(solarsys.set_view(45 * u.deg, -120 *
                                           u.deg, 4 * u.km), output_type='div')
-    # SolarSys Code
 
     # Roadster Code
     EPOCH = Time("2018-02-18 12:00:00", scale="tdb")
@@ -200,7 +239,6 @@ def realtime(request):
 
     frame_div = plot(frame.set_view(45 * u.deg, -120 *
                                     u.deg, 4 * u.km), output_type='div')
-    # Roadster Code
     return render(request, 'BluePages/realtime.html',  context={'frame_div': frame_div, 'solarsys_div': solarsys_div})
 
 

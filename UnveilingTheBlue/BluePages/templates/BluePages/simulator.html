@@ -14,6 +14,16 @@
   <h1 class="aBriefHistoryOfAstronomy"><span>Mission Control</h1>
 </div>
 
+<article>
+  <div class="dropdownExplanationDiv">
+    <h1 class="dropdownExplanation">Welcome to Mission Control. Here you can explore the orbital mechanics at work when
+      designing an interplanetary expedition. This is a very simplistic analysis and is purposed with providing a basic
+      understanding and visualization of the orbital dynamics of launching a spacecraft. Have fun and launch your own
+      expeditions to visualize your mission's trajectories to see if you successfully made it to Mars! To Mars and
+      Beyond!!</h1>
+  </div>
+</article>
+
 <div>
   {% if launch_date %}
   <h2 class="whereItAllBegan">{{ launch_date }} and {{ arrival_date }} </h2>
@@ -21,24 +31,10 @@
   {% else %}
   <h2 class="whereItAllBegan">11111111111111111111111111</h2>
 
-
   {% endif %}
-
 </div>
 
-<article>
-  <div class="article-title">Design Your Mission</div>
-  <form action="{%url 'simulator' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" name='launch_date'>
-    <input type="text" name='arrival_date'>
-    <div class="col-12">
-      <button type="submit" class="button">Submit</button>
-    </div>
-  </form>
-
-</article>
-
+{% if launch_date %}
 <article>
   <div class="article-title">Launch Positions</div>
   {% autoescape off %}
@@ -58,132 +54,39 @@
 </article>
 
 <article>
-  <div class="article-title">Arrival Positions</div>
+  <div class="article-title">Final Trajectory</div>
   {% autoescape off %}
   {{ plotter_div }}
   {% endautoescape %}
 </article>
+{% endif %}
 
 
-<!--<div>
-    <h1 class="ourSolarSystem">Our Solar System</h1>
-  </div>
+<h2 class="whereItAllBegan">Planning a Mission to Mars</h2>
 
-  <article>
-    <div class="solarsys">
-      <div class="solarsys">
-        <div class="gridline1"></div>
-        <div class="gridline2"></div>
-        <div class="solarsys-orbit"></div>
-        <div class="asteroidbelt-orbit"></div>
-        <div class="star sun"></div>
-        <div class="planet mercury"></div>
-        <div class="planet venus"></div>
-        <div class="planet earth">
-          <div class="moon"></div>
-          <div class="moon2"></div>
-        </div>
-        <div class="planet mars"></div>
-        <div class="asteroidbelt"></div>
-        <div class="asteroidbelt1"></div>
-        <div class="asteroidbelt2"></div>
-        <div class="asteroidbelt3"></div>
-        <div class="asteroidbelt4"></div>
-        <div class="asteroidbelt5"></div>
-        <div class="asteroidbelt6"></div>
-        <div class="asteroidbelt7"></div>
-        <div class="planet jupiter"></div>
-        <div class="planet saturn"></div>
-        <div class="planet uranus"></div>
-        <div class="planet neptune"></div>
-        <div class="planet pluto"></div>
-      </div>
+
+<article>
+  <div class="article-title">Lambert's Problem</div>
+  {% autoescape off %}
+  {{ solarsys_div }}
+  {{ frame_div }}
+  {% endautoescape %}
+  <img class="article-img r-7" src="{% static 'css/images/LambertsProblemVectorVis.jpeg' %}" alt="R7 ICBM">
+  <figcaption class="imgCaptions">Relative Position Vectors 2d Visualization</figcaption>
+</article>
+
+<article>
+  <div class="article-title">Design Your Mission</div>
+  <form action="{%url 'simulator' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name='launch_date'>
+    <input type="text" name='arrival_date'>
+    <div class="col-12">
+      <button type="submit" class="button">Submit</button>
     </div>
-    <div>
-      <h1 class="captionTrueTimeScaled">True Time Scaled</h1>
-    </div>
-  </article>
+  </form>
 
-  <article>
-    <h2 class="article-title">The Sun</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  <article>
-    <h2 class="article-title">Mercury</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  <article>
-    <h2 class="article-title">Venus</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  <article>
-    <h2 class="article-title">Earth</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  <article>
-    <h2 class="article-title">Asteroid Belt</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  <article>
-    <h2 class="article-title">Jupiter</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  <article>
-    <h2 class="article-title">Saturn</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  <article>
-    <h2 class="article-title">Uranus</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  <article>
-    <h2 class="article-title">Neptune</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-  <article>
-    <h2 class="article-title">Pluto</h2>
-    <p class="article-para">
-
-    </p>
-  </article>
-
-
-  </article>-->
+</article>
 
 
 {% endblock %}
