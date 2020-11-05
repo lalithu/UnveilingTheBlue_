@@ -12,7 +12,7 @@ from plotly.graph_objs import Scatter
 from astropy.time import Time
 from astropy import units as u
 
-from poliastro.bodies import Earth, Mars, Sun
+from poliastro.bodies import Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, Sun
 from poliastro.ephem import Ephem
 from poliastro.frames import Planes
 from poliastro.plotting import OrbitPlotter3D
@@ -21,6 +21,8 @@ from poliastro.util import time_range
 import plotly.io as pio
 
 from poliastro.plotting.misc import plot_solar_system
+
+import datetime
 
 
 '''
@@ -39,6 +41,25 @@ def home(request):
 
 def astronomy(request):
 
+    current_time = datetime.datetime.now()
+    print(current_time)
+
+    EPOCH1 = Time(str(current_time), scale="tdb")
+    solarsys = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
+
+    solarsys.plot_body_orbit(Mercury, EPOCH1)
+    solarsys.plot_body_orbit(Venus, EPOCH1)
+    solarsys.plot_body_orbit(Earth, EPOCH1)
+    solarsys.plot_body_orbit(Mars, EPOCH1)
+    '''solarsys.plot_body_orbit(Jupiter, EPOCH1)
+    solarsys.plot_body_orbit(Saturn, EPOCH1)
+    solarsys.plot_body_orbit(Uranus, EPOCH1)
+    solarsys.plot_body_orbit(Neptune, EPOCH1)'''
+
+    solarsys_div = plot(solarsys.set_view(45 * u.deg, -120 *
+                                          u.deg, 4 * u.km), output_type='div')
+
+    # Roadster Code
     EPOCH = Time("2018-02-18 12:00:00", scale="tdb")
 
     roadster = Ephem.from_horizons(
@@ -58,8 +79,9 @@ def astronomy(request):
 
     frame_div = plot(frame.set_view(45 * u.deg, -120 *
                                     u.deg, 4 * u.km), output_type='div')
+    # Roadster Code
 
-    return render(request, 'BluePages/astronomy.html', context={'frame_div': frame_div})
+    return render(request, 'BluePages/astronomy.html', context={'frame_div': frame_div, 'solarsys_div': solarsys_div})
 
 
 def spaceExploration(request):
