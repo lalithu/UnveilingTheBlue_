@@ -11,24 +11,56 @@
 </div>
 
 <div>
-  <h1 class="aBriefHistoryOfAstronomy"><span>Rocket Launch</span><span> Simulator</span></h1>
+  <h1 class="aBriefHistoryOfAstronomy"><span>Mission Control</h1>
 </div>
 
 <div>
-  <h2 class="whereItAllBegan">Where it All Began</h2>
+  {% if launch_date %}
+  <h2 class="whereItAllBegan">{{ launch_date }} and {{ arrival_date }} </h2>
+
+  {% else %}
+  <h2 class="whereItAllBegan">11111111111111111111111111</h2>
+
+
+  {% endif %}
+
 </div>
 
 <article>
-  <div class="article-title">Our Solar System in Real Time</div>
+  <div class="article-title">Design Your Mission</div>
+  <form action="{%url 'simulator' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name='launch_date'>
+    <input type="text" name='arrival_date'>
+    <div class="col-12">
+      <button type="submit" class="button">Submit</button>
+    </div>
+  </form>
+
+</article>
+
+<article>
+  <div class="article-title">Launch Positions</div>
   {% autoescape off %}
-  {{ solarsys_div }}
+  {{ Earth2dL_div }}
+  {{ Mars2dL_div }}
+  {{ Frame2dL_div }}
   {% endautoescape %}
 </article>
 
 <article>
-  <div class="article-title">SpaceX Roadster Roadtrip</div>
+  <div class="article-title">Arrival Positions</div>
   {% autoescape off %}
-  {{ frame_div }}
+  {{ Earth2dA_div }}
+  {{ Mars2dA_div }}
+  {{ Frame2dA_div }}
+  {% endautoescape %}
+</article>
+
+<article>
+  <div class="article-title">Arrival Positions</div>
+  {% autoescape off %}
+  {{ plotter_div }}
   {% endautoescape %}
 </article>
 
