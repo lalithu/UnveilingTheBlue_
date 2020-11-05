@@ -19,22 +19,16 @@
     <h1 class="dropdownExplanation">Welcome to Mission Control. Here you can explore the orbital mechanics at work when
       designing an interplanetary expedition. This is a very simplistic analysis and is purposed with providing a basic
       understanding and visualization of the orbital dynamics of launching a spacecraft. Have fun and launch your own
-      expeditions to visualize your mission's trajectories to see if you successfully made it to Mars! To Mars and
+      expeditions to render your mission's trajectories to see if you successfully made it to Mars! To Mars and
       Beyond!!</h1>
   </div>
 </article>
 
+{% if launch_date %}
 <div>
-  {% if launch_date %}
   <h2 class="whereItAllBegan">{{ launch_date }} and {{ arrival_date }} </h2>
-
-  {% else %}
-  <h2 class="whereItAllBegan">11111111111111111111111111</h2>
-
-  {% endif %}
 </div>
 
-{% if launch_date %}
 <article>
   <div class="article-title">Launch Positions</div>
   {% autoescape off %}
@@ -59,11 +53,37 @@
   {{ plotter_div }}
   {% endautoescape %}
 </article>
-{% endif %}
 
+<article>
+  <form action="{%url 'simulator' %}" method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-25">
+        <h1 class="article-title">Launch Date</h1>
+      </div>
+
+      <div class="col-75">
+        <input type="text" name='launch_date'>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <h1 class="article-title">Arrival Date</h1>
+      </div>
+
+      <div class="col-75">
+        <input type="text" name='arrival_date'>
+      </div>
+    </div>
+
+    <div class="col-121">
+      <button type="launch" class="button">Render Trajectory</button>
+    </div>
+  </form>
+</article>
 
 <h2 class="whereItAllBegan">Planning a Mission to Mars</h2>
-
 
 <article>
   <div class="article-title">Lambert's Problem</div>
@@ -75,18 +95,49 @@
   <figcaption class="imgCaptions">Relative Position Vectors 2d Visualization</figcaption>
 </article>
 
-<article>
-  <div class="article-title">Design Your Mission</div>
-  <form action="{%url 'simulator' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" name='launch_date'>
-    <input type="text" name='arrival_date'>
-    <div class="col-12">
-      <button type="submit" class="button">Submit</button>
-    </div>
-  </form>
+{% else %}
 
+<h2 class="whereItAllBegan">Planning an Interplanetary Expedition to Mars</h2>
+
+<article>
+  <div class="article-title">Lambert's Problem</div>
+  {% autoescape off %}
+  <!--{{ solarsys_div }}
+  {{ frame_div }}-->
+  {% endautoescape %}
+  <img class="article-img r-7" src="{% static 'css/images/LambertsProblemVectorVis.jpeg' %}" alt="R7 ICBM">
+  <figcaption class="imgCaptions">Position Vectors(r0 - Initial, r1 - Secondary)</figcaption>
 </article>
 
+<article>
+  <form action="{%url 'simulator' %}" method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-25">
+        <h1 class="article-title">Launch Date</h1>
+      </div>
+
+      <div class="col-75">
+        <input type="text" name='launch_date' placeholder="Year-Month-Day Time UTC">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <h1 class="article-title">Arrival Date</h1>
+      </div>
+
+      <div class="col-75">
+        <input type="text" name='arrival_date' placeholder="Year-Month-Day Time UTC">
+      </div>
+    </div>
+
+    <div class="col-121">
+      <button type="launch" class="button">Render Trajectory</button>
+    </div>
+  </form>
+</article>
+
+{% endif %}
 
 {% endblock %}
