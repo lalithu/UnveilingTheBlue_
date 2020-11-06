@@ -114,6 +114,15 @@ def simulator(request):
             Frame2dL_div = plot(Frame2dL.plot_body_orbit(
                 Earth, date_launch), output_type='div')
 
+            # Frame 3d Launch
+            Frame3dL = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
+
+            Frame3dL.plot_body_orbit(Earth, date_launch)
+            Frame3dL.plot_body_orbit(Mars, date_launch)
+
+            Frame3dL_div = plot(Frame3dL.set_view(
+                30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
+
             # Earth Arrival
             Earth2dA = OrbitPlotter2D()
 
@@ -134,20 +143,29 @@ def simulator(request):
             Frame2dA_div = plot(Frame2dA.plot_body_orbit(
                 Earth, date_arrival), output_type='div')
 
+            # Frame 3d Arrival
+            Frame3dA = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
+
+            Frame3dA.plot_body_orbit(Earth, date_arrival)
+            Frame3dA.plot_body_orbit(Mars, date_arrival)
+
+            Frame3dA_div = plot(Frame3dA.set_view(
+                30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
+
             # THE GOOD STUFF - Visualizing Desired Trajectory
             earth = Ephem.from_body(Earth, time_range(
                 date_launch, end=date_arrival))
             mars = Ephem.from_body(Mars, time_range(
                 date_launch, end=date_arrival))
 
-            # Solve for departure and target orbits
+            # Solve for Launch and Landing orbits
             ss_earth = Orbit.from_ephem(Sun, earth, date_launch)
             ss_mars = Orbit.from_ephem(Sun, mars, date_arrival)
 
-            # Solve for the transfer maneuver
+            # Lambert's Problem
             man_lambert = Maneuver.lambert(ss_earth, ss_mars)
 
-            # Get the transfer and final orbits, Render Trajectory
+            # Render Trajectory
             ss_trans, ss_target = ss_earth.apply_maneuver(
                 man_lambert, intermediate=True)
 
@@ -177,7 +195,7 @@ def simulator(request):
             final_traj2d_div = plot(final_traj2d.plot_body_orbit(
                 Mars, date_arrival, label="Mars at Arrival Position", trail=True), output_type='div')
 
-            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div})
+            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Frame3dL_div': Frame3dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'Frame3dA_div': Frame3dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div})
         else:
             error_message = "Your Launch and Arrival Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
