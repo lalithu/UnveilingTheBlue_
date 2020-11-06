@@ -150,20 +150,20 @@ def simulator(request):
             ss_trans, ss_target = ss_earth.apply_maneuver(
                 man_lambert, intermediate=True)
 
-            plotter = OrbitPlotter3D()
-            plotter.set_attractor(Sun)
+            final_traj = OrbitPlotter3D()
+            final_traj.set_attractor(Sun)
 
-            plotter.plot_ephem(earth, date_launch,
-                               label="Earth at launch position")
-            plotter.plot_ephem(mars, date_arrival,
-                               label="Mars at arrival position")
-            plotter.plot_trajectory(
+            final_traj.plot_ephem(earth, date_launch,
+                                  label="Earth at launch position")
+            final_traj.plot_ephem(mars, date_arrival,
+                                  label="Mars at arrival position")
+            final_traj.plot_trajectory(
                 ss_trans.sample(max_anomaly=180 * u.deg), color="black", label="Transfer orbit"
             )
-            plotter_div = plot(plotter.set_view(
+            final_traj_div = plot(final_traj.set_view(
                 30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
 
-            return render(request, 'BluePages/simulator.html', {'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'plotter_div': plotter_div})
+            return render(request, 'BluePages/simulator.html', {'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'final_traj_div': final_traj_div})
         else:
             error_message = "Your Launch and Arrival Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
