@@ -90,6 +90,21 @@ def simulator(request):
                 return False
 
         if validate(dateL) and validate(dateA):
+            launch_lst = date_lst_launch[0].split("-")
+            dListL = [int(n) for n in launch_lst]
+
+            arrival_lst = date_lst_arrival[0].split("-")
+            dListA = [int(n) for n in arrival_lst]
+
+            L_ = datetime.datetime(dListL[0], dListL[1], dListL[2])
+            A_ = datetime.datetime(dListA[0], dListA[1], dListA[2])
+
+            if L_ >= A_:
+                error_message = "Your Launch and Arrival Date Inputs don't seem to be working. Try again."
+                return render(request, 'BluePages/simulator.html', {'error_message': error_message})
+            else:
+                pass
+
             # Curiosity: 2011-11-26 15:02, Perserverance: 2020-6-30 11:50
             date_launch = time.Time(datetime_launch, scale="utc").tdb
             # Curiosity: 2012-08-06 05:17 Perserverance: 2021-2-18 12:30
