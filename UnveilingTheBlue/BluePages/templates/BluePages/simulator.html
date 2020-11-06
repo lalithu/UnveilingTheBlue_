@@ -30,7 +30,7 @@
 </div>
 
 <article>
-  <div class="article-title">Launch Positions</div>
+  <div class="article-title">{{ mission_name }} - Launch Positions</div>
   {% autoescape off %}
   {{ Earth2dL_div }}
   {{ Mars2dL_div }}
@@ -39,7 +39,7 @@
 </article>
 
 <article>
-  <div class="article-title">Arrival Positions</div>
+  <div class="article-title">{{ mission_name }} - Arrival Positions</div>
   {% autoescape off %}
   {{ Earth2dA_div }}
   {{ Mars2dA_div }}
@@ -52,7 +52,7 @@
 <div id='stars3'></div>
 
 <article>
-  <div class="article-title">Final Trajectory</div>
+  <div class="article-title">{{ mission_name }} - Flight Path</div>
   {% autoescape off %}
   {{ final_traj_div }}
   {% endautoescape %}
@@ -90,6 +90,16 @@
   </p>
   <form action="{%url 'simulator' %}" method="POST">
     {% csrf_token %}
+    <div class="row">
+      <div class="col-25">
+        <h1 class="article-title">Mission Name</h1>
+      </div>
+
+      <div class="col-75">
+        <input type="text" name='mission_name' placeholder="Ex. Mars Pathfinder">
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-25">
         <h1 class="article-title">Launch Date</h1>
@@ -176,6 +186,16 @@
   </p>
   <form action="{%url 'simulator' %}" method="POST">
     {% csrf_token %}
+    <div class="row">
+      <div class="col-25">
+        <h1 class="article-title">Mission Name</h1>
+      </div>
+
+      <div class="col-75">
+        <input type="text" name='mission_name' placeholder="Ex. Mars Pathfinder">
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-25">
         <h1 class="article-title">Launch Date</h1>

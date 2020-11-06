@@ -60,6 +60,7 @@ def home(request):
 
 def simulator(request):
     if request.method == "POST":
+        mission_name = request.POST['mission_name']
         launch_date = request.POST['launch_date']
         arrival_date = request.POST['arrival_date']
 
@@ -163,7 +164,7 @@ def simulator(request):
             final_traj_div = plot(final_traj.set_view(
                 30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
 
-            return render(request, 'BluePages/simulator.html', {'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'final_traj_div': final_traj_div})
+            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'final_traj_div': final_traj_div})
         else:
             error_message = "Your Launch and Arrival Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
