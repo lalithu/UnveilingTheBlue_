@@ -29,37 +29,37 @@
   <h2 class="whereItAllBegan">{{ launch_date }} and {{ arrival_date }} </h2>
 </div>
 
-<article>
-  <div class="article-title">{{ mission_name }} - Launch Positions</div>
+<div class="article-title" style="margin:10px; text-align: center;">{{ mission_name }} - Launch Positions</div>
+<div class="plotly-grid">
   {% autoescape off %}
   {{ Earth2dL_div }}
   {{ Mars2dL_div }}
   {{ Frame2dL_div }}
   {{ Frame3dL_div }}
   {% endautoescape %}
-</article>
+</div>
 
-<article>
-  <div class="article-title">{{ mission_name }} - Arrival Positions</div>
+<div class="article-title" style="margin:10px; text-align: center;">{{ mission_name }} - Arrival Positions</div>
+<div class="plotly-grid">
   {% autoescape off %}
   {{ Earth2dA_div }}
   {{ Mars2dA_div }}
   {{ Frame2dA_div }}
   {{ Frame3dA_div }}
   {% endautoescape %}
-</article>
+</div>
 
 <div id='stars'></div>
 <div id='stars2'></div>
 <div id='stars3'></div>
 
-<article>
-  <div class="article-title">{{ mission_name }} - Flight Path</div>
+<div class="article-title" style="margin:10px; text-align: center;">{{ mission_name }} - Flight Path</div>
+<div class="plotly-grid">
   {% autoescape off %}
   {{ final_traj_div }}
   {{ final_traj2d_div }}
   {% endautoescape %}
-</article>
+</div>
 
 <article>
   <p class="article-para">
