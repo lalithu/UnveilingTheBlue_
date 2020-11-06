@@ -124,15 +124,15 @@ def simulator(request):
             Mars2dA = OrbitPlotter2D()
 
             Mars2dA_div = plot(Mars2dA.plot_body_orbit(
-                Mars, date_launch), output_type='div')
+                Mars, date_arrival), output_type='div')
 
             # Frame Arrival
             Frame2dA = OrbitPlotter2D()
 
-            Frame2dA.plot_body_orbit(Mars, date_launch)
+            Frame2dA.plot_body_orbit(Mars, date_arrival)
 
             Frame2dA_div = plot(Frame2dA.plot_body_orbit(
-                Earth, date_launch), output_type='div')
+                Earth, date_arrival), output_type='div')
 
             # THE GOOD STUFF - Visualizing Desired Trajectory
             earth = Ephem.from_body(Earth, time_range(
@@ -147,7 +147,7 @@ def simulator(request):
             # Solve for the transfer maneuver
             man_lambert = Maneuver.lambert(ss_earth, ss_mars)
 
-            # Get the transfer and final orbits
+            # Get the transfer and final orbits, Render Trajectory
             ss_trans, ss_target = ss_earth.apply_maneuver(
                 man_lambert, intermediate=True)
 
@@ -155,16 +155,29 @@ def simulator(request):
             final_traj.set_attractor(Sun)
 
             final_traj.plot_ephem(earth, date_launch,
-                                  label="Earth at launch position")
+                                  label="Earth at Launch Position")
             final_traj.plot_ephem(mars, date_arrival,
-                                  label="Mars at arrival position")
+                                  label="Mars at Arrival Position")
             final_traj.plot_trajectory(
-                ss_trans.sample(max_anomaly=180 * u.deg), color="black", label="Transfer orbit"
+                ss_trans.sample(max_anomaly=180 * u.deg), color="black", label="Spacecraft's Trajectory"
             )
             final_traj_div = plot(final_traj.set_view(
                 30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
 
-            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'final_traj_div': final_traj_div})
+            # Render Trajectory - 2d
+            final_traj2d = OrbitPlotter2D()
+            final_traj2d.set_attractor(Sun)
+
+            final_traj2d.plot_body_orbit(
+                Earth, date_launch, label="Earth at Launch Position", trail=True)
+
+            final_traj2d.plot_trajectory(ss_trans.sample(
+                max_anomaly=180 * u.deg), color="black", label="Spacecraft's Trajectory")
+
+            final_traj2d_div = plot(final_traj2d.plot_body_orbit(
+                Mars, date_arrival, label="Mars at Arrival Position", trail=True), output_type='div')
+
+            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div})
         else:
             error_message = "Your Launch and Arrival Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
