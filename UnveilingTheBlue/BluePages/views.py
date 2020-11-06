@@ -75,7 +75,7 @@ def simulator(request):
         date_lst_arrival = datetime_arrival.split()
 
         if not date_lst_launch or not date_lst_arrival or datetime_launch[0] == " " or datetime_launch[-1] == " " or datetime_arrival[0] == " " or datetime_arrival[-1] == " ":
-            error_message = "Your Launch and Arrival Inputs don't seem to be working. Try again."
+            error_message = "Your Launch and Arrival Date Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
         else:
             dateL = date_lst_launch[0]
@@ -197,7 +197,7 @@ def simulator(request):
 
             return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Frame3dL_div': Frame3dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'Frame3dA_div': Frame3dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div})
         else:
-            error_message = "Your Launch and Arrival Inputs don't seem to be working. Try again."
+            error_message = "Your Launch and Arrival Date Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
 
     else:
