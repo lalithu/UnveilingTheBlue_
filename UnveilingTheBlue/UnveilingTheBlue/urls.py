@@ -31,6 +31,7 @@ urlpatterns = [
     path('simulator.html', views.simulator, name="simulator"),
     path('spaceExploration.html', views.spaceExploration, name="spaceExploration"),
     path('astrodev.html', views.astrodev, name="astrodev"),
-    path('realtime.html', views.realtime, name="realtime"),
+    path('interplanetaryFlight.html', views.interplanetaryFlight,
+         name="interplanetaryFlight"),
     path('about.html', views.about, name="about"),
 ]

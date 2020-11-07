@@ -227,7 +227,7 @@ def astrodev(request):
     return render(request, 'BluePages/astrodev.html', {})
 
 
-def realtime(request):
+def interplanetaryFlight(request):
     # SolarSys Code
     current_time = datetime.datetime.now()
     print(current_time)
@@ -268,7 +268,7 @@ def realtime(request):
 
     frame_div = plot(frame.set_view(45 * u.deg, -120 *
                                     u.deg, 4 * u.km), output_type='div')
-    return render(request, 'BluePages/realtime.html',  context={'frame_div': frame_div, 'solarsys_div': solarsys_div})
+    return render(request, 'BluePages/interplanetaryFlight.html',  context={'frame_div': frame_div, 'solarsys_div': solarsys_div})
 
 
 def about(request):
