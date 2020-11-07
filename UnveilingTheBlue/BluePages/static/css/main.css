@@ -1201,6 +1201,25 @@ img {
   font-size: 1.75rem;
 }
 
+.title-center {
+  position: relative;
+  z-index: 9000;
+  background-color: dodgerblue;
+}
+
+.article-title-center {
+  margin: 10px;
+  text-align: center;
+  padding: 2px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: 200;
+  font-size: 1.75rem;
+}
+
 .year {
   margin: 0px;
   padding: 2px;
@@ -1285,7 +1304,8 @@ img {
     font-size: 1.75rem;
   }
 
-  .article-title {
+  .article-title,
+  .article-title-center {
     font-size: 1.5rem;
   }
 
@@ -1329,7 +1349,8 @@ img {
     display: block;
   }
 
-  .article-title {
+  .article-title,
+  .article-title-center {
     font-size: 1.375rem;
   }
 
@@ -2148,7 +2169,8 @@ pluto = 2,170,000 hours /877 = 2474.34436s
 }
 
 @media screen and (max-width: 340px) {
-  .article-title {
+  .article-title,
+  .article-title-center {
     font-size: 1.125rem;
   }
 
