@@ -26,6 +26,8 @@ from poliastro.plotting.misc import plot_solar_system
 import datetime
 
 import numpy as np
+import math
+import plotly.graph_objects as go
 
 import astropy.units as u
 from astropy import time
@@ -63,6 +65,30 @@ def simulator(request):
         mission_name = request.POST['mission_name']
         launch_date = request.POST['launch_date']
         arrival_date = request.POST['arrival_date']
+
+        Ve_input = request.POST['Ve_input']
+        thrust_input = request.POST['thrust_input']
+        massI_input = request.POST['massI_input']
+
+        Ve_reassignment = int(Ve_input)
+        massI_reassignment = int(massI_input)
+        q = 418.255214
+        t = np.arange(0, 4000)
+
+        fig = go.Figure(data=go.Scatter(
+            x=Ve_reassignment * np.log(massI_reassignment / (massI_reassignment - q * t)), y=t))
+
+        fig_div = plot(fig, output_type='div')
+
+        '''def deltaV(t):
+            minas = massI_input - (q * t)
+            minas.to_numeric(minas)
+            base = massI_input / minas
+            Ln = math.log(base)
+            return Ve_input * Ln
+
+        fig = go.Figure(data=go.Scatter(x=deltaV(t), y=t))
+        fig.show()'''
 
         # Set Date and Time
         datetime_launch = launch_date
@@ -210,7 +236,7 @@ def simulator(request):
             final_traj2d_div = plot(final_traj2d.plot_body_orbit(
                 Mars, date_arrival, label="Mars at Arrival Position", trail=True), output_type='div')
 
-            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Frame3dL_div': Frame3dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'Frame3dA_div': Frame3dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div})
+            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Frame3dL_div': Frame3dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'Frame3dA_div': Frame3dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div, 'Ve_input': Ve_input, 'fig_div': fig_div})
         else:
             error_message = "Your Launch and Arrival Date Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})

@@ -221,5 +221,83 @@ const app = () => {
   dropdownSlide14();  
 };
 
-navSlide()
+/*var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+};*/
+
+var VeSlider = document.getElementById("Ve");
+var thrustSlider = document.getElementById("thrust");
+var massSlider = document.getElementById("mass");
+
+var VeOutput = document.getElementById("VeValue");
+var thrustOutput = document.getElementById("thrustValue");
+var massOutput = document.getElementById("massValue");
+
+var delataV = document.getElementById('deltaV')
+
+/*
+F = q * Ve + (Pe - Pa) * Ae
+q = 418.255214
+Ve = User Generated Input
+Pe = 101325
+Pa = 101325
+Ae = 4.52389342
+
+Thrust to Weight Ratio: 1.1
+
+C = Ve + (Pe - Pa)/q
+C = Ve User Generated Input
+
+DeltaV = Ve * Ln(Inital Mass / Final Mass)
+Initial Mass = User Generated Input
+Final Mass = Initial Mass - q * t 
+
+*/
+
+VeSlider.oninput = function() {
+  VeOutput.innerHTML = this.value;
+
+  thrustSlider.value = (418.255214 * VeSlider.value)  + (101325 - 101325) * 4.52389342;
+  thrustOutput.innerHTML = thrustSlider.value;  
+
+  massSlider.value = thrustSlider.value / 1.1;
+  massOutput.innerHTML = massSlider.value;
+
+  delataV.innerHTML = VeSlider.value * Math.log(massSlider.value / (massSlider.value - 418.255214 * 120))
+  console.log(delataV)
+};
+
+thrustSlider.oninput = function(){
+  thrustOutput.innerHTML = this.value;
+  
+  VeSlider.value = thrustSlider.value / 418.255214;
+  VeOutput.innerHTML = VeSlider.value;
+
+  massSlider.value = thrustSlider.value / 1.1;
+  massOutput.innerHTML = massSlider.value;
+
+  delataV.innerHTML = VeSlider.value * Math.log(massSlider.value / (massSlider.value - 418.255214 * 120))
+  console.log(delataV)
+};
+
+massSlider.oninput = function(){
+  massOutput.innerHTML = this.value;
+
+  VeSlider.value = thrustSlider.value / 418.255214;
+  VeOutput.innerHTML = VeSlider.value;
+
+  thrustSlider.value = massSlider.value * 1.1;
+  thrustOutput.innerHTML = thrustSlider.value;
+
+  delataV.innerHTML = VeSlider.value * Math.log(massSlider.value / (massSlider.value - 418.255214 * 120))
+  console.log(delataV)
+};
+
+
+
+navSlide();
 app();

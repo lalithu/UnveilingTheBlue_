@@ -1013,7 +1013,7 @@ body {
 .home-image-wrapper-Astro {
   height: 400px;
   width: 100%;
-  background-image: url(images/nasa5.jpg);
+  background-image: url(images/nasa9.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top;
@@ -2231,6 +2231,7 @@ textarea {
   color: white;
   box-shadow: 0px 0px 40px dodgerblue;
   transition: all 0.5s;
+  outline: none;
 }
 
 textarea {
@@ -2281,12 +2282,14 @@ button[type="submit"] {
   height: 35px;
   width: 100px;
   color: white;
+  outline: none;
 }
 
 .col-12:hover {
   background: white;
   color: dodgerblue;
   box-shadow: 0px 0px 40px white;
+  outline: none;
 }
 
 button:hover {
@@ -2363,6 +2366,7 @@ button[type="launch"] {
   height: 40px;
   width: 100%;
   color: white;
+  outline: none;
 }
 
 .col-121:hover {
@@ -2406,4 +2410,38 @@ button:hover {
       grid-template-columns: 1fr 5% [start] 15% 60% 15% [end] 5% 1fr;
     }
   }
+}
+
+.slidecontainer {
+  width: 100%;
+  z-index: 9000;
+  position: relative;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  box-shadow: 0px 0px 40px dodgerblue;
+  outline: none;
+  -webkit-transition: 0.5s;
+  transition: all 0.5s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 40px;
+  background: dodgerblue;
+  box-shadow: 0px 0px 40px dodgerblue;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: dodgerblue;
+  cursor: pointer;
 }
