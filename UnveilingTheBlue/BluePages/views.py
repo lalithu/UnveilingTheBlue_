@@ -72,15 +72,11 @@ def simulator(request):
 
         Ve_reassignment = int(Ve_input)
         massI_reassignment = int(massI_input)
-        q = 418.255214
-        t = np.arange(0, 4000)
+        q = 3655.31858
+        t = np.arange(0, 600)
 
         fig = go.Figure(data=go.Scatter(
             x=Ve_reassignment * np.log(massI_reassignment / (massI_reassignment - q * t)), y=t))
-        fig.update_layout(
-            xaxis_title="Time",
-            yaxis_title="𝚫V",
-        )
 
         fig_div = plot(fig, output_type='div')
 
