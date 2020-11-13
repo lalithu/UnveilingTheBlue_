@@ -241,8 +241,8 @@ var delataV = document.getElementById('deltaV')
 
 /*
 F = q * Ve + (Pe - Pa) * Ae
-q = 418.255214
-Ve = User Generated Input
+q = 418.255214 kg/s
+Ve = User Generated Input m/s
 Pe = 101325
 Pa = 101325
 Ae = 4.52389342
