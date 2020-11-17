@@ -229,6 +229,9 @@ slider.oninput = function() {
   output.innerHTML = this.value;
 };*/
 
+
+
+
 var VeSlider = document.getElementById("Ve");
 var thrustSlider = document.getElementById("thrust");
 var massSlider = document.getElementById("mass");
@@ -237,7 +240,7 @@ var VeOutput = document.getElementById("VeValue");
 var thrustOutput = document.getElementById("thrustValue");
 var massOutput = document.getElementById("massValue");
 
-var delataV = document.getElementById('deltaV')
+var delataV = document.getElementById('deltaV');
 
 /*
 F = q * Ve + (Pe - Pa) * Ae
@@ -297,7 +300,6 @@ massSlider.oninput = function(){
   delataV.innerHTML = VeSlider.value * Math.log(massSlider.value / (massSlider.value - 3655.31858 * 480))
   console.log(delataV)
 };
-
 
 
 navSlide();
