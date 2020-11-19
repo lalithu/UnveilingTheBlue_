@@ -232,9 +232,9 @@ slider.oninput = function() {
 
 
 
-var VeSlider = document.getElementById("Ve");
-var thrustSlider = document.getElementById("thrust");
-var massSlider = document.getElementById("mass");
+var InitialMassSlider = document.getElementById("Ve");
+var PropellantMassSlider = document.getElementById("thrust");
+var FinalMassSlider = document.getElementById("mass");
 
 var VeOutput = document.getElementById("VeValue");
 var thrustOutput = document.getElementById("thrustValue");

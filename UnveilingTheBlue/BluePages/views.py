@@ -8,6 +8,9 @@ from django.core.mail import send_mail
 
 # Mission Control Dependencies
 from plotly.offline import plot
+from plotly.offline import plot_mpl
+from plotly.offline import iplot_mpl
+
 from plotly.graph_objs import Scatter
 
 from astropy.time import Time
@@ -45,6 +48,7 @@ from poliastro.frames import Planes
 from astropy.coordinates import solar_system_ephemeris
 from poliastro.plotting import OrbitPlotter2D
 
+from poliastro.plotting.porkchop import porkchop
 
 '''
 class BlueView(View):
@@ -236,7 +240,12 @@ def simulator(request):
             final_traj2d_div = plot(final_traj2d.plot_body_orbit(
                 Mars, date_arrival, label="Mars at Arrival Position", trail=True), output_type='div')
 
-            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Frame3dL_div': Frame3dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'Frame3dA_div': Frame3dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div, 'Ve_input': Ve_input, 'fig_div': fig_div})
+            # Porkchop
+
+            launch_span = time_range("2005-04-30", end="2005-10-07")
+            arrival_span = time_range("2005-11-16", end="2006-12-21")
+
+            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Frame3dL_div': Frame3dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'Frame3dA_div': Frame3dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div, 'Ve_input': Ve_input, 'fig_div': fig_div, 'pork_div': pork_div})
         else:
             error_message = "Your Launch and Arrival Date Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
