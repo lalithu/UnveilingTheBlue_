@@ -45,7 +45,6 @@ from poliastro.frames import Planes
 from astropy.coordinates import solar_system_ephemeris
 from poliastro.plotting import OrbitPlotter2D
 
-
 '''
 class BlueView(View):
     def get(self, request, *args, **kwargs):
@@ -63,49 +62,22 @@ def home(request):
 def simulator(request):
     if request.method == "POST":
         mission_name = request.POST['mission_name']
+        origin = request.POST['origin']
+        destination = request.POST['destination']
         launch_date = request.POST['launch_date']
-        arrival_date = request.POST['arrival_date']
-
-        Ve_input = request.POST['Ve_input']
-        thrust_input = request.POST['thrust_input']
-        massI_input = request.POST['massI_input']
-
-        Ve_reassignment = int(Ve_input)
-        massI_reassignment = int(massI_input)
-        q = 3655.31858
-        t = np.arange(0, 600)
-
-        fig = go.Figure(data=go.Scatter(
-            x=Ve_reassignment * np.log(massI_reassignment / (massI_reassignment - q * t)), y=t))
-
-        fig_div = plot(fig, output_type='div')
-
-        '''def deltaV(t):
-            minas = massI_input - (q * t)
-            minas.to_numeric(minas)
-            base = massI_input / minas
-            Ln = math.log(base)
-            return Ve_input * Ln
-
-        fig = go.Figure(data=go.Scatter(x=deltaV(t), y=t))
-        fig.show()'''
 
         # Set Date and Time
         datetime_launch = launch_date
         # print(datetime_launch)
-        datetime_arrival = arrival_date
-        # print(datetime_arrival)
 
         # Split Date and Time for Validation
         date_lst_launch = datetime_launch.split()
-        date_lst_arrival = datetime_arrival.split()
 
-        if not date_lst_launch or not date_lst_arrival or datetime_launch[0] == " " or datetime_launch[-1] == " " or datetime_arrival[0] == " " or datetime_arrival[-1] == " ":
+        if not date_lst_launch or datetime_launch[0] == " " or datetime_launch[-1] == " ":
             error_message = "Your Launch and Arrival Date Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})
         else:
             dateL = date_lst_launch[0]
-            dateA = date_lst_arrival[0]
 
         # Validate Launch and Arrival Dates
         def validate(date_text):
@@ -115,128 +87,225 @@ def simulator(request):
             except ValueError:
                 return False
 
-        if validate(dateL) and validate(dateA):
+        if validate(dateL):
             launch_lst = date_lst_launch[0].split("-")
             dListL = [int(n) for n in launch_lst]
 
-            arrival_lst = date_lst_arrival[0].split("-")
-            dListA = [int(n) for n in arrival_lst]
-
             L_ = datetime.datetime(dListL[0], dListL[1], dListL[2])
-            A_ = datetime.datetime(dListA[0], dListA[1], dListA[2])
-
-            if L_ >= A_:
-                error_message = "Your Launch and Arrival Date Inputs don't seem to be working. Try again."
-                return render(request, 'BluePages/simulator.html', {'error_message': error_message})
-            else:
-                pass
 
             # Curiosity: 2011-11-26 15:02, Perserverance: 2020-6-30 11:50
             date_launch = time.Time(datetime_launch, scale="utc").tdb
             # Curiosity: 2012-08-06 05:17 Perserverance: 2021-2-18 12:30
-            date_arrival = time.Time(datetime_arrival, scale="utc").tdb
-            # Earth Launch
-            Earth2dL = OrbitPlotter2D()
 
-            Earth2dL_div = plot(Earth2dL.plot_body_orbit(
-                Earth, date_launch), output_type='div')
+            planets = {"Mercury": Mercury, "Venus": Venus, "Earth": Earth, "Mars": Mars,
+                       "Jupiter": Jupiter, "Saturn": Saturn, "Uranus": Uranus, "Neptune": Neptune}
 
-            # Mars Launch
-            Mars2dL = OrbitPlotter2D()
+            origin_planet_inp = str(origin)
+            destination_planet_inp = str(destination)
 
-            Mars2dL_div = plot(Mars2dL.plot_body_orbit(
-                Mars, date_launch), output_type='div')
+            origin_planet = planets[origin_planet_inp]
+            destination_planet = planets[destination_planet_inp]
+
+            # Origin Planet Launch
+            Origin2dL = OrbitPlotter2D()
+
+            Origin2dL_div = plot(Origin2dL.plot_body_orbit(
+                origin_planet, date_launch), output_type='div')
+
+            # Destination Planet Launch
+            Destination2dL = OrbitPlotter2D()
+
+            Destination2dL_div = plot(Destination2dL.plot_body_orbit(
+                destination_planet, date_launch), output_type='div')
 
             # Frame Launch
             Frame2dL = OrbitPlotter2D()
 
-            Frame2dL.plot_body_orbit(Mars, date_launch)
+            Frame2dL.plot_body_orbit(destination_planet, date_launch)
 
             Frame2dL_div = plot(Frame2dL.plot_body_orbit(
-                Earth, date_launch), output_type='div')
+                origin_planet, date_launch), output_type='div')
+
+            # Planeatary Positions, Velocities, Orbits at Launch
+            # launch_planetary_positions = OrbitPlotter2D()
+
+            origin_position = Ephem.from_body(origin_planet, date_launch)
+            origin_orbit = Orbit.from_ephem(Sun, origin_position, date_launch)
+
+            destination_position = Ephem.from_body(
+                destination_planet, date_launch)
+            destination_orbit = Orbit.from_ephem(
+                Sun, destination_position, date_launch)
+
+            # launch_planetary_positions.plot(origin_orbit)
+
+            # launch_planetary_positions_div = plot(launch_planetary_positions.plot(destination_orbit), output_type='div')
 
             # Frame 3d Launch
             Frame3dL = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
 
-            Frame3dL.plot_body_orbit(Earth, date_launch)
-            Frame3dL.plot_body_orbit(Mars, date_launch)
+            Frame3dL.plot_body_orbit(origin_planet, date_launch)
+            Frame3dL.plot_body_orbit(destination_planet, date_launch)
 
             Frame3dL_div = plot(Frame3dL.set_view(
                 30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
 
-            # Earth Arrival
-            Earth2dA = OrbitPlotter2D()
+            print(origin_orbit.r)
+            print(origin_orbit.v)
+            print(origin_orbit.a)
 
-            Earth2dA_div = plot(Earth2dA.plot_body_orbit(
-                Earth, date_arrival), output_type='div')
+            print(destination_orbit.r)
+            print(destination_orbit.v)
+            print(destination_orbit.a)
 
-            # Mars Arrival
-            Mars2dA = OrbitPlotter2D()
+            sun_mu = 1.32712e11
 
-            Mars2dA_div = plot(Mars2dA.plot_body_orbit(
-                Mars, date_arrival), output_type='div')
+            origin_sm_axis = origin_orbit.a
+            destination_sm_axis = destination_orbit.a
+
+            spacecraft_sm_axis = (origin_sm_axis + destination_sm_axis) / 2.0
+            spacecraft_ecc = 1 - origin_sm_axis / destination_sm_axis
+
+            transfer_time = np.pi * np.sqrt(spacecraft_sm_axis ** 3 / sun_mu)
+
+            print(float(str(origin_sm_axis).strip("km")))
+            print(float(str(destination_sm_axis).strip("km")))
+
+            print(float(str(spacecraft_sm_axis).strip("km")))
+            print(float(str(spacecraft_ecc).strip("km")))
+
+            print(float(str(transfer_time / 60 / 60 / 24).rstrip('km(3/2)')))
+
+            v_origin = np.sqrt(sun_mu / float(str(origin_sm_axis).strip("km")))
+            v_destination = np.sqrt(
+                sun_mu / float(str(destination_sm_axis).strip("km")))
+
+            v_spacecraft_depart = np.sqrt(sun_mu * (2.0 / float(str(origin_sm_axis).strip(
+                "km")) - 1.0 / float(str(spacecraft_sm_axis).strip("km"))))
+            v_spacecraft_arrive = np.sqrt(sun_mu * (2.0 / float(str(destination_sm_axis).strip(
+                "km")) - 1.0 / float(str(spacecraft_sm_axis).strip("km"))))
+
+            deltaV_depart = v_spacecraft_depart - v_origin
+            deltaV_arrive = v_destination - v_spacecraft_arrive
+
+            print(v_origin)
+            print(v_spacecraft_depart)
+            print(deltaV_depart)
+
+            print(v_destination)
+            print(v_spacecraft_arrive)
+            print(deltaV_arrive)
+
+            print(float(str(transfer_time / 60 / 60 / 24).rstrip('km(3/2)')))
+
+            print(int(round(float(str(transfer_time / 60 / 60).rstrip('km(3/2)')), 1)))
+
+            date_time_str = launch_date
+            date_time_obj = datetime.datetime.strptime(
+                date_time_str, '%Y-%m-%d %H:%M:%S')
+
+            transfer_time_hours = int(
+                round(float(str(transfer_time / 60 / 60).rstrip('km(3/2)')), 1))
+
+            datetime_transfer = datetime.timedelta(hours=transfer_time_hours)
+            arrival_date = str(date_time_obj + datetime_transfer)
+
+            print(arrival_date)
+
+            date_launch = time.Time(launch_date, scale="utc").tdb
+            date_arrival = time.Time(arrival_date, scale="utc").tdb
+
+            # Origin Planet Arrival
+            Origin2dA = OrbitPlotter2D()
+
+            Origin2dA_div = plot(Origin2dA.plot_body_orbit(
+                origin_planet, date_arrival), output_type='div')
+
+            # Destination Planet Arrival
+            Destination2dA = OrbitPlotter2D()
+
+            Destination2dA_div = plot(Destination2dA.plot_body_orbit(
+                destination_planet, date_arrival), output_type='div')
 
             # Frame Arrival
             Frame2dA = OrbitPlotter2D()
 
-            Frame2dA.plot_body_orbit(Mars, date_arrival)
+            Frame2dA.plot_body_orbit(destination_planet, date_arrival)
 
             Frame2dA_div = plot(Frame2dA.plot_body_orbit(
-                Earth, date_arrival), output_type='div')
+                origin_planet, date_arrival), output_type='div')
 
             # Frame 3d Arrival
             Frame3dA = OrbitPlotter3D(plane=Planes.EARTH_ECLIPTIC)
 
-            Frame3dA.plot_body_orbit(Earth, date_arrival)
-            Frame3dA.plot_body_orbit(Mars, date_arrival)
+            Frame3dA.plot_body_orbit(origin_planet, date_arrival)
+            Frame3dA.plot_body_orbit(destination_planet, date_arrival)
 
             Frame3dA_div = plot(Frame3dA.set_view(
                 30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
 
-            # THE GOOD STUFF - Visualizing Desired Trajectory
-            earth = Ephem.from_body(Earth, time_range(
-                date_launch, end=date_arrival))
-            mars = Ephem.from_body(Mars, time_range(
-                date_launch, end=date_arrival))
+            # Visualizing Desired Trajectory
+            origin_ephem = Ephem.from_body(
+                origin_planet, time_range(date_launch, end=date_arrival))
+            destination_ephem = Ephem.from_body(
+                destination_planet, time_range(date_launch, end=date_arrival))
 
             # Solve for Launch and Landing orbits
-            ss_earth = Orbit.from_ephem(Sun, earth, date_launch)
-            ss_mars = Orbit.from_ephem(Sun, mars, date_arrival)
+            origin_orbit = Orbit.from_ephem(Sun, origin_ephem, date_launch)
+            destination_orbit = Orbit.from_ephem(
+                Sun, destination_ephem, date_arrival)
 
             # Lambert's Problem
-            man_lambert = Maneuver.lambert(ss_earth, ss_mars)
+            man_lambert = Maneuver.lambert(origin_orbit, destination_orbit)
 
             # Render Trajectory
-            ss_trans, ss_target = ss_earth.apply_maneuver(
+            transfer_orbit, target_orbit = origin_orbit.apply_maneuver(
                 man_lambert, intermediate=True)
+            print(transfer_orbit)
 
-            final_traj = OrbitPlotter3D()
-            final_traj.set_attractor(Sun)
+            flight_path = OrbitPlotter3D()
+            flight_path.set_attractor(Sun)
 
-            final_traj.plot_ephem(earth, date_launch,
-                                  label="Earth at Launch Position")
-            final_traj.plot_ephem(mars, date_arrival,
-                                  label="Mars at Arrival Position")
-            final_traj.plot_trajectory(
-                ss_trans.sample(max_anomaly=180 * u.deg), color="black", label="Spacecraft's Trajectory"
-            )
-            final_traj_div = plot(final_traj.set_view(
+            flight_path.plot_ephem(
+                origin_ephem, date_launch, label="{} at Launch Position".format(origin_planet))
+            flight_path.plot_ephem(
+                destination_ephem, date_arrival, label="{} at Arrival Position".format(destination_planet))
+
+            flight_path.plot_trajectory(transfer_orbit.sample(
+                max_anomaly=180 * u.deg), label="Flight Path")
+
+            flight_path_div = plot(flight_path.set_view(
                 30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
 
-            # Render Trajectory - 2d
-            final_traj2d = OrbitPlotter2D()
-            final_traj2d.set_attractor(Sun)
+            # Flight Path - 2d
+            flight_path2d = OrbitPlotter2D()
+            flight_path2d.set_attractor(Sun)
 
-            final_traj2d.plot_body_orbit(
-                Earth, date_launch, label="Earth at Launch Position", trail=True)
+            flight_path2d.plot_body_orbit(
+                origin_planet, date_launch, label="{} at Launch Position".format(origin_planet), trail=True)
 
-            final_traj2d.plot_trajectory(ss_trans.sample(
-                max_anomaly=180 * u.deg), color="black", label="Spacecraft's Trajectory")
+            flight_path2d.plot_trajectory(transfer_orbit.sample(
+                max_anomaly=180 * u.deg), label="Flight Path")
 
-            final_traj2d_div = plot(final_traj2d.plot_body_orbit(
-                Mars, date_arrival, label="Mars at Arrival Position", trail=True), output_type='div')
+            flight_path2d_div = plot(flight_path2d.plot_body_orbit(
+                destination_planet, date_arrival, label="{} at Arrival Position".format(destination_planet), trail=True), output_type='div')
 
-            return render(request, 'BluePages/simulator.html', {'mission_name': mission_name, 'launch_date': launch_date, 'arrival_date': arrival_date, 'Earth2dL_div': Earth2dL_div, 'Mars2dL_div': Mars2dL_div, 'Frame2dL_div': Frame2dL_div, 'Frame3dL_div': Frame3dL_div, 'Earth2dA_div': Earth2dA_div, 'Mars2dA_div': Mars2dA_div, 'Frame2dA_div': Frame2dA_div, 'Frame3dA_div': Frame3dA_div, 'final_traj_div': final_traj_div, 'final_traj2d_div': final_traj2d_div, 'Ve_input': Ve_input, 'fig_div': fig_div})
+            return render(request, 'BluePages/simulator.html', {
+                'mission_name': mission_name,
+                'origin_planet': origin_planet,
+                'destination_planet': destination_planet,
+                'launch_date': launch_date,
+                'Origin2dL_div': Origin2dL_div,
+                'Destination2dL_div': Destination2dL_div,
+                'Frame2dL_div': Frame2dL_div,
+                'Frame3dL_div': Frame3dL_div,
+                'Origin2dA_div': Origin2dA_div,
+                'Destination2dA_div': Destination2dA_div,
+                'Frame2dA_div': Frame2dA_div,
+                'Frame3dA_div': Frame3dA_div,
+                'flight_path_div': flight_path_div,
+                'flight_path2d_div': flight_path2d_div
+            })
         else:
             error_message = "Your Launch and Arrival Date Inputs don't seem to be working. Try again."
             return render(request, 'BluePages/simulator.html', {'error_message': error_message})

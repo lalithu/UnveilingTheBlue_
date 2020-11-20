@@ -26,14 +26,14 @@
 
 {% if launch_date %}
 <div>
-  <h2 class="whereItAllBegan">{{ launch_date }} and {{ arrival_date }} </h2>
+  <h2 class="whereItAllBegan">{{ launch_date }} and {{ origin_planet }} and {{ destination_planet }}</h2>
 </div>
 
 <div class="article-title" style="margin:10px; text-align: center;">{{ mission_name }} - Launch Positions</div>
 <div class="plotly-grid">
   {% autoescape off %}
-  {{ Earth2dL_div }}
-  {{ Mars2dL_div }}
+  {{ Origin2dL_div }}
+  {{ Destination2dL_div }}
   {{ Frame2dL_div }}
   {{ Frame3dL_div }}
   {% endautoescape %}
@@ -42,8 +42,8 @@
 <div class="article-title" style="margin:10px; text-align: center;">{{ mission_name }} - Arrival Positions</div>
 <div class="plotly-grid">
   {% autoescape off %}
-  {{ Earth2dA_div }}
-  {{ Mars2dA_div }}
+  {{ Origin2dA_div }}
+  {{ Destination2dA_div }}
   {{ Frame2dA_div }}
   {{ Frame3dA_div }}
   {% endautoescape %}
@@ -56,9 +56,8 @@
 <div class="article-title" style="margin:10px; text-align: center;">{{ mission_name }} - Flight Path</div>
 <div class="plotly-grid">
   {% autoescape off %}
-  {{ final_traj_div }}
-  {{ final_traj2d_div }}
-  {{ fig_div }}
+  {{ flight_path2d_div }}
+  {{ flight_path_div }}
   {% endautoescape %}
 </div>
 
@@ -113,6 +112,42 @@
       </div>
     </div>
 
+    <div class="col-26">
+      <h1 class="article-title">Origin</h1>
+    </div>
+
+    <div class="switch-container">
+      <input type="radio" id="mercury_rs_origin" name="origin" value="Mercury">
+      <label for="mercury_rs_origin">Mercury</label>
+
+      <input type="radio" id="venus_rs_origin" name="origin" value="Venus">
+      <label for="venus_rs_origin">Venus</label>
+
+      <input type="radio" id="earth_rs_origin" name="origin" value="Earth">
+      <label for="earth_rs_origin">Earth</label>
+
+      <input type="radio" id="mars_rs_origin" name="origin" value="Mars">
+      <label for="mars_rs_origin">Mars</label>
+    </div>
+
+    <div class="col-25">
+      <h1 class="article-title">Destination</h1>
+    </div>
+
+    <div class="switch-container">
+      <input type="radio" id="mercury_rs_destination" name="destination" value="Mercury">
+      <label for="mercury_rs_destination">Mercury</label>
+
+      <input type="radio" id="venus_rs_destination" name="destination" value="Venus">
+      <label for="venus_rs_destination">Venus</label>
+
+      <input type="radio" id="earth_rs_destination" name="destination" value="Earth">
+      <label for="earth_rs_destination">Earth</label>
+
+      <input type="radio" id="mars_rs_destination" name="destination" value="Mars">
+      <label for="mars_rs_destination">Mars</label>
+    </div>
+
     <div class="row">
       <div class="col-25">
         <h1 class="article-title">Launch Date</h1>
@@ -132,57 +167,10 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-25">
-        <h1 class="article-title">Arrival Date</h1>
-      </div>
-
-      <div class="col-75">
-        <input type="text" name='arrival_date' placeholder="Year-Month-Day Time UTC" list="arrivals">
-        <datalist id="arrivals">
-          <option value="1997-7-4 16:56:55">
-          <option value="1999-12-3 20:15:00">
-          <option value="2004-1-4 04:35:00">
-          <option value="2004-1-25 04:54:00">
-          <option value="2008-5-25 23:53:00">
-          <option value="2012-8-6 05:17:00">
-          <option value="2021-2-18 8:00:00">
-        </datalist>
-      </div>
-    </div>
-
-    <div class="slidecontainer">
-      <input type="range" name="Ve_input" min="3447" max="5447" value="4447" class="slider" id="Ve">
-      <p class="year">Exhaust Velocity:
-        <span class="year" id="VeValue">4447</span>
-        m/s
-      </p>
-    </div>
-
-    <div class="slidecontainer">
-      <input type="range" name="thrust_input" min="4250000" max="6250000" value="5250000" class="slider" id="thrust">
-      <p class="year">Thrust:
-        <span class="year" id="thrustValue">5250000</span>
-        n
-      </p>
-    </div>
-
-    <div class="slidecontainer">
-      <input type="range" name="massI_input" min="1051113" max="3051113" value="2051113" class="slider" id="mass">
-      <p class="year">Mass:
-        <span class="year" id="massValue">2051113</span>
-        kg
-      </p>
-    </div>
-
-    <p class="year">Delta V:
-      <span class="year" id="deltaV">8600.000014412728</span>
-      m/s
-    </p>
-
     <div class="col-121">
-      <button type="launch" class="button">Render Trajectory</button>
+      <button type="launch" class="button" style="margin-bottom: 0px;">Render Trajectory</button>
     </div>
+    <h2 class="year" style="margin-top: 0px; margin-bottom: 10px;">{{ error_message }}</h2>
   </form>
 </article>
 
@@ -298,6 +286,42 @@
       </div>
     </div>
 
+    <div class="col-26">
+      <h1 class="article-title">Origin</h1>
+    </div>
+
+    <div class="switch-container">
+      <input type="radio" id="mercury_rs_origin" name="origin" value="Mercury">
+      <label for="mercury_rs_origin">Mercury</label>
+
+      <input type="radio" id="venus_rs_origin" name="origin" value="Venus">
+      <label for="venus_rs_origin">Venus</label>
+
+      <input type="radio" id="earth_rs_origin" name="origin" value="Earth">
+      <label for="earth_rs_origin">Earth</label>
+
+      <input type="radio" id="mars_rs_origin" name="origin" value="Mars">
+      <label for="mars_rs_origin">Mars</label>
+    </div>
+
+    <div class="col-25">
+      <h1 class="article-title">Destination</h1>
+    </div>
+
+    <div class="switch-container">
+      <input type="radio" id="mercury_rs_destination" name="destination" value="Mercury">
+      <label for="mercury_rs_destination">Mercury</label>
+
+      <input type="radio" id="venus_rs_destination" name="destination" value="Venus">
+      <label for="venus_rs_destination">Venus</label>
+
+      <input type="radio" id="earth_rs_destination" name="destination" value="Earth">
+      <label for="earth_rs_destination">Earth</label>
+
+      <input type="radio" id="mars_rs_destination" name="destination" value="Mars">
+      <label for="mars_rs_destination">Mars</label>
+    </div>
+
     <div class="row">
       <div class="col-25">
         <h1 class="article-title">Launch Date</h1>
@@ -316,55 +340,6 @@
         </datalist>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-25">
-        <h1 class="article-title">Arrival Date</h1>
-      </div>
-
-      <div class="col-75">
-        <input type="text" name='arrival_date' placeholder="Year-Month-Day Time UTC" list="arrivals">
-        <datalist id="arrivals">
-          <option value="1997-7-4 16:56:55">
-          <option value="1999-12-3 20:15:00">
-          <option value="2004-1-4 04:35:00">
-          <option value="2004-1-25 04:54:00">
-          <option value="2008-5-25 23:53:00">
-          <option value="2012-8-6 05:17:00">
-          <option value="2021-2-18 8:00:00">
-        </datalist>
-      </div>
-    </div>
-
-    <!--Aligned with Space Shuttle Main Engine Rs-25-->
-    <div class="slidecontainer">
-      <input type="range" name="Ve_input" min="3447" max="5447" value="4447" class="slider" id="Ve">
-      <p class="year">Exhaust Velocity:
-        <span class="year" id="VeValue">4447</span>
-        m/s
-      </p>
-    </div>
-
-    <div class="slidecontainer">
-      <input type="range" name="thrust_input" min="4250000" max="6250000" value="5250000" class="slider" id="thrust">
-      <p class="year">Thrust:
-        <span class="year" id="thrustValue">5250000</span>
-        n
-      </p>
-    </div>
-
-    <div class="slidecontainer">
-      <input type="range" name="massI_input" min="1051113" max="3051113" value="2051113" class="slider" id="mass">
-      <p class="year">Mass:
-        <span class="year" id="massValue">2051113</span>
-        kg
-      </p>
-    </div>
-
-    <p class="year">Delta V:
-      <span class="year" id="deltaV">8600.000014412728</span>
-      m/s
-    </p>
 
     <div class="col-121">
       <button type="launch" class="button" style="margin-bottom: 0px;">Render Trajectory</button>

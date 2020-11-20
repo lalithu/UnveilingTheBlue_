@@ -2322,6 +2322,12 @@ textarea:hover::-webkit-input-placeholder {
   margin-top: 3px;
 }
 
+.col-26 {
+  float: left;
+  width: 50%;
+  margin-top: 0px;
+}
+
 .col-75 {
   float: right;
   width: 100%;
@@ -2444,4 +2450,52 @@ button:hover {
   height: 25px;
   background: dodgerblue;
   cursor: pointer;
+}
+
+.switch-container {
+  position: relative;
+  z-index: 9000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 100%;
+}
+
+input[type="radio"] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+input[type="radio"] + label {
+  background-color: transparent;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  width: 25%;
+  transition: all 0.375s ease-in-out;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 0px 40px dodgerblue;
+}
+
+input[type="radio"] + label:after {
+  box-shadow: 0px 0px 40px dodgerblue;
+}
+
+input[type="radio"] + label:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 40px white;
+}
+
+input[type="radio"]:checked + label {
+  background-color: white;
+  color: dodgerblue;
+  box-shadow: 0px 0px 40px white;
 }
