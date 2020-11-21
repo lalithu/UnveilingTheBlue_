@@ -272,7 +272,7 @@ def simulator(request):
                 destination_ephem, date_arrival, label="{} at Arrival Position".format(destination_planet))
 
             flight_path.plot_trajectory(transfer_orbit.sample(
-                max_anomaly=180 * u.deg), label="Flight Path")
+                max_anomaly=180 * u.rad), label="Flight Path")
 
             flight_path_div = plot(flight_path.set_view(
                 30 * u.deg, 260 * u.deg, distance=3 * u.km), output_type='div')
@@ -282,13 +282,13 @@ def simulator(request):
             flight_path2d.set_attractor(Sun)
 
             flight_path2d.plot_body_orbit(
-                origin_planet, date_launch, label="{} at Launch Position".format(origin_planet), trail=True)
+                origin_planet, date_launch, label="{} at Launch Position".format(origin_planet), color='#1b60a5', trail=True)
 
             flight_path2d.plot_trajectory(transfer_orbit.sample(
-                max_anomaly=180 * u.deg), label="Flight Path")
+                max_anomaly=180 * u.rad), color='#269321', label="Flight Path")
 
             flight_path2d_div = plot(flight_path2d.plot_body_orbit(
-                destination_planet, date_arrival, label="{} at Arrival Position".format(destination_planet), trail=True), output_type='div')
+                destination_planet, date_arrival, color='#fd6b10', label="{} at Arrival Position".format(destination_planet), trail=True), output_type='div')
 
             return render(request, 'BluePages/simulator.html', {
                 'mission_name': mission_name,
