@@ -295,6 +295,7 @@ def simulator(request):
                 'origin_planet': origin_planet,
                 'destination_planet': destination_planet,
                 'launch_date': launch_date,
+                'arrival_date': arrival_date,
                 'Origin2dL_div': Origin2dL_div,
                 'Destination2dL_div': Destination2dL_div,
                 'Frame2dL_div': Frame2dL_div,

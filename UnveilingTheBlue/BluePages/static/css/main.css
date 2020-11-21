@@ -13,10 +13,10 @@
   overflow: hidden;
   transition: all 0.5s;
   /* darkmode!! background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); */
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  color: white;
+  /*background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: white; */
 }
-
+/*
 @import "compass/css3";
 
 #stars {
@@ -588,7 +588,7 @@
   to {
     transform: translateY(-2000px);
   }
-}
+}*/
 
 body {
   margin: 0px;
@@ -741,7 +741,7 @@ body {
 }
 
 .nav-link-wrapper a {
-  color: white;
+  color: black;
   text-decoration: none;
   transition: color 0.5s;
 }
@@ -777,7 +777,7 @@ body {
   height: 2px;
   margin: 10px;
   transition: 0.375s ease;
-  background-color: white;
+  background-color: dodgerblue;
 }
 
 @media screen and (max-width: 1240px) {
@@ -801,7 +801,7 @@ body {
     right: 0px;
     border: 2px solid dodgerblue;
     height: 0px;
-    top: 74px;
+    top: 68px;
     display: flex;
     flex-direction: column;
     align-items: right;
@@ -896,7 +896,7 @@ body {
   }
 
   .right-side {
-    top: 74px;
+    top: 68px;
     height: 0;
   }
 
@@ -911,7 +911,7 @@ body {
 
 .toggle .line1 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 /*.toggle .line2 {
@@ -920,7 +920,7 @@ body {
 
 .toggle .line2 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .footer {
@@ -1408,7 +1408,7 @@ img {
 .dropdownburger14 div {
   width: 20px;
   height: 2px;
-  background-color: white;
+  background-color: dodgerblue;
   margin: 10px;
   transition: 0.375s ease;
   cursor: pointer;
@@ -1470,152 +1470,152 @@ img {
 
 .dropdowntoggle .dropdownline1 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle .dropdownline2 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle1 .dropdownline11 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle1 .dropdownline21 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle2 .dropdownline12 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle2 .dropdownline22 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle3 .dropdownline13 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle3 .dropdownline23 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle4 .dropdownline14 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle4 .dropdownline24 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle5 .dropdownline15 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle5 .dropdownline25 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle6 .dropdownline16 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle6 .dropdownline26 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle7 .dropdownline17 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle7 .dropdownline27 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle8 .dropdownline18 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle8 .dropdownline28 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle9 .dropdownline19 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle9 .dropdownline29 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle10 .dropdownline110 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle10 .dropdownline210 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle11 .dropdownline111 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle11 .dropdownline211 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle12 .dropdownline112 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle12 .dropdownline212 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle13 .dropdownline113 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle13 .dropdownline213 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle14 .dropdownline114 {
   transform: rotate(-45deg) translate(-2.5px, 6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .dropdowntoggle14 .dropdownline214 {
   transform: rotate(45deg) translate(-2.5px, -6px);
-  background-color: dodgerblue;
+  background-color: black;
 }
 
 .solarsys {
@@ -2228,10 +2228,17 @@ textarea {
   z-index: 9000;
   position: relative;
   background-color: transparent;
-  color: white;
+  color: dodgerblue;
   box-shadow: 0px 0px 40px dodgerblue;
   transition: all 0.5s;
   outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 textarea {
@@ -2241,18 +2248,18 @@ textarea {
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: white;
+  color: dodgerblue;
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: white;
+  color: dodgerblue;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: white;
+  color: dodgerblue;
 }
 
 .col-12 {
@@ -2281,13 +2288,19 @@ button[type="submit"] {
   border: none;
   height: 35px;
   width: 100px;
-  color: white;
+  color: dodgerblue;
   outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .col-12:hover {
-  background: white;
-  color: dodgerblue;
+  background: dodgerblue;
+  color: white;
   box-shadow: 0px 0px 40px white;
   outline: none;
 }
@@ -2297,23 +2310,23 @@ button:hover {
 }
 
 input:hover {
-  background: white;
-  color: dodgerblue;
+  background: dodgerblue;
+  color: white;
   box-shadow: 0px 0px 40px white;
 }
 
 textarea:hover {
-  background: white;
-  color: dodgerblue;
+  background: dodgerblue;
+  color: white;
   box-shadow: 0px 0px 40px white;
 }
 
 input:hover::-webkit-input-placeholder {
-  color: dodgerblue;
+  color: white;
 }
 
 textarea:hover::-webkit-input-placeholder {
-  color: dodgerblue;
+  color: white;
 }
 
 .col-25 {
@@ -2371,8 +2384,14 @@ button[type="launch"] {
   border: none;
   height: 40px;
   width: 100%;
-  color: white;
+  color: dodgerblue;
   outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.0125rem;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .col-121:hover {
@@ -2382,7 +2401,8 @@ button[type="launch"] {
 }
 
 button:hover {
-  color: dodgerblue;
+  color: white;
+  background: dodgerblue;
 }
 
 .plotly-grid {
@@ -2482,6 +2502,7 @@ input[type="radio"] + label {
   letter-spacing: 0.0125rem;
   font-weight: bold;
   font-size: 1rem;
+  color: dodgerblue;
   box-shadow: 0 0px 40px dodgerblue;
 }
 
@@ -2492,10 +2513,12 @@ input[type="radio"] + label:after {
 input[type="radio"] + label:hover {
   cursor: pointer;
   box-shadow: 0px 0px 40px white;
+  background: dodgerblue;
+  color: white;
 }
 
 input[type="radio"]:checked + label {
-  background-color: white;
-  color: dodgerblue;
-  box-shadow: 0px 0px 40px white;
+  background-color: dodgerblue;
+  color: white;
+  box-shadow: 0px 0px 40px dodgerblue;
 }
