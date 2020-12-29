@@ -58,7 +58,11 @@ class BlueView(View):
 
 def home(request):
     response = requests.get("https://api.spacexdata.com/v4/launches")
+    next_launch_response = requests.get(
+        "https://api.spacexdata.com/v4/launches/next")
+
     launches = response.json()
+    next_launch = next_launch_response.json()
 
     flight_numbers = []
     patches = []
@@ -101,8 +105,11 @@ def home(request):
 
     cards.reverse()
 
-    n_id = 0
-    return render(request, 'BluePages/index.html', {'cards': cards, 'n_id': n_id})
+    actual_NLFN = next_launch["flight_number"] - 1
+    next_launch_flight_number = (n - next_launch["flight_number"]) + 1
+    next_launch_flight_number_css = next_launch_flight_number - 1
+
+    return render(request, 'BluePages/index.html', {'cards': cards, 'next_launch_flight_number': next_launch_flight_number, "next_launch_flight_number_css": next_launch_flight_number_css, 'actual_NLFN': actual_NLFN})
 
 
 def simulator(request):

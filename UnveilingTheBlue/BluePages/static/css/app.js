@@ -221,15 +221,5 @@ const app = () => {
   dropdownSlide14();  
 };
 
-function cardScroll() {
-  var card_id = document.getElementById("12");
-  card_id.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-    inline: "nearest"
-  });
-};
-
-cardScroll();
 navSlide();
 app();

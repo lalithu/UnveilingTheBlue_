@@ -50,9 +50,16 @@
 
 {% for card in cards %}
 
+
 <article>
     <div class="card_wrapper" id="{{ forloop.counter }}">
-        {{ forloop.counter }}
+
+        {% if next_launch_flight_number_css == forloop.counter0 %}
+        <div class="next_launch_thingy" style="display: block;">Next Launch</div>
+        {% else %}
+        <div style="display: none;">Next Launch</div>
+        {% endif %}
+
         <div class="card">
             <div class="right_side">
                 <div class="patch">
@@ -82,6 +89,15 @@
                             <div class="yourlaunchtime">Your Launch Time</div>
                             <div class="datedate">3/7/20 10:20 AM</div>
                         </div>
+
+                        {% if next_launch_flight_number_css == forloop.counter0 %}
+                        <div class="bottom_detail1">
+                            <div id="demo" style="display: block;"></div>
+
+                        </div>
+                        {% else %}
+
+                        {% endif %}
 
                     </div>
 
@@ -181,10 +197,63 @@
         </div>-->
 
         </div>
-    </div>
 
+        {% if next_launch_flight_number_css == forloop.counter0 %}
+        <div class="past_launch_wrapper">
+            <div class="past_launch_thingy" style="display: block;">Past Launches </div>
+            <div class="nlfn"> {{ actual_NLFN }}</div>
+        </div>
+        {% else %}
+        <div style="display: none;">Past Launch</div>
+        {% endif %}
+
+    </div>
 </article>
 
 {% endfor %}
+
+<script type="text/javascript">
+
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jan 10, 2021 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+
+    function cardScroll() {
+        var card_id = document.getElementById("{{ next_launch_flight_number }}");
+        card_id.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "nearest"
+        });
+    };
+
+    cardScroll();
+</script>
+
 
 {% endblock %}
