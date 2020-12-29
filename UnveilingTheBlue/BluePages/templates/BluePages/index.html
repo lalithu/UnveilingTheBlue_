@@ -3,14 +3,12 @@
 
 {% block content %}
 
-<div class="home-image">
+<!--<div class="home-image">
     <div class="home-images-wrapper">
-        <!--<img class="home-image-wrapper"src="images/m87.jpg" alt="Image taken of blackhole at the center of galaxy M87">-->
+        <img class="home-image-wrapper"src="images/m87.jpg" alt="Image taken of blackhole at the center of galaxy M87">
         <div class="home-image-wrapper"></div>
     </div>
 </div>
-
-
 
 <article id="Purpose">
     <h1 class="purpose">Purpose</h1>
@@ -28,6 +26,7 @@
         offer. So have fun, learn something new and be sure to spread the
         awareness about astronomy wherever you can.
     </p>
+
 </article>
 
 <article id="About Me">
@@ -47,6 +46,144 @@
     </p>
     <img class="bois" src="{% static 'css/images/Bois.jpg' %}" alt="" />
 </article>
-</div>
+</div>-->
+
+{% for card in cards %}
+
+<article>
+    <div class="card_wrapper">
+        <div class="card">
+            <div class="right_side">
+                <div class="patch">
+                    <img src="{{ card.1 }}" alt="">
+                </div>
+                <div class="rocket_div">
+                    <div class="rocket"></div>
+                </div>
+            </div>
+
+            <div class="left_side">
+                <div class="top">
+                    <div class="mission_name">
+                        {{ card.2 }}
+                    </div>
+                    <div class="flight_number">
+                        {{ card.0 }}
+                    </div>
+                </div>
+                <div class="details">
+                    {{ card.3 }}
+                </div>
+                <div class="bottom">
+                    <div class="bottom_title">
+                        Launch Details
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Your Launch Time</div>
+                            <div class="datedate">3/7/20 10:20 AM</div>
+                        </div>
+
+                    </div>
+
+                    <div class="bottom_title">
+                        First Stage - Falcon 9
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Serial</div>
+                            <div class="datedate">B1059</div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Reused</div>
+                            <div class="datedate">
+                                <i class="fa fa-leaf fa-flip-horizontal" style="color: limegreen;"></i>
+
+                            </div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Times Flown</div>
+                            <div class="datedate">1</div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Landed</div>
+                            <div class="datedate">
+                                <i class="fa fa-check-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Landing Type</div>
+                            <div class="datedate">RTLS</div>
+                        </div>
+                    </div>
+
+                    <div class="bottom_title">
+                        2nd Stage - Dragon 1.1
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Customer</div>
+                            <div class="datedate">NASA (CRS)</div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Payload ID</div>
+                            <div class="datedate">CRS-20</div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Mass</div>
+                            <div class="datedate">1977.0kg</div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Orbit</div>
+                            <div class="datedate">ISS</div>
+                        </div>
+                    </div>
+
+                    <div class="bottom_title">
+                        Fairings
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Reused</div>
+                            <div class="datedate">
+                                <i class="fa fa-question-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Recovery Attempt</div>
+                            <div class="datedate">
+                                <i class="fa fa-question-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Recovered</div>
+                            <div class="datedate">
+                                <i class="fa fa-question-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="bottom_detail1">
+                            <div class="yourlaunchtime">Recovery Ship</div>
+                            <div class="datedate">TBD</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="launch_site">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112207.52954834313!2d-80.65365041866312!3d28.495043358700844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e0a3f2a5fb9a45%3A0x87ef91ee250f8fde!2sCape%20Canaveral!5e0!3m2!1sen!2sin!4v1609236092681!5m2!1sen!2sin"
+            allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>-->
+
+        </div>
+    </div>
+
+</article>
+
+{% endfor %}
 
 {% endblock %}

@@ -45,6 +45,7 @@ from poliastro.frames import Planes
 from astropy.coordinates import solar_system_ephemeris
 from poliastro.plotting import OrbitPlotter2D
 
+import requests
 '''
 class BlueView(View):
     def get(self, request, *args, **kwargs):
@@ -56,7 +57,51 @@ class BlueView(View):
 
 
 def home(request):
-    return render(request, 'BluePages/index.html', {})
+    response = requests.get("https://api.spacexdata.com/v4/launches")
+    launches = response.json()
+
+    flight_numbers = []
+    patches = []
+    names = []
+    details = []
+    date_utc = []
+
+    for launch in launches:
+        flight_numbers.append(launch["flight_number"])
+        names.append(launch['name'])
+        details.append(launch['details'])
+        if "links" in launch:
+            link_dict = launch["links"]
+            if "patch" in link_dict:
+                patch_keys = link_dict["patch"]
+                if "large" in patch_keys:
+                    patches.append(patch_keys['large'])
+
+    print(flight_numbers)
+    print(patches)
+
+    flight_numbers.reverse()
+    patches.reverse()
+    names.reverse()
+    details.reverse()
+
+    cards = []
+    n = 0
+    for _ in flight_numbers:
+        cards.append([flight_numbers[n], patches[n], names[n], details[n]])
+        n += 1
+
+    print(cards)
+
+    def Sort(cards_sort):
+        cards_sort.sort(key=lambda x: x[0])
+        return cards_sort
+
+    cards = Sort(cards)
+
+    cards.reverse()
+
+    return render(request, 'BluePages/index.html', {'cards': cards})
 
 
 def simulator(request):
@@ -65,6 +110,8 @@ def simulator(request):
         origin = request.POST['origin']
         destination = request.POST['destination']
         launch_date = request.POST['launch_date']
+
+        print(mission_name)
 
         # Set Date and Time
         datetime_launch = launch_date
@@ -82,7 +129,7 @@ def simulator(request):
         # Validate Launch and Arrival Dates
         def validate(date_text):
             try:
-                datetime.datetime.strptime(date_text, '%Y-%m-%d')
+                datetime.datetime.strptime(date_text, '%Y-%m-%d %H:%M:%S')
                 return True
             except ValueError:
                 return False
