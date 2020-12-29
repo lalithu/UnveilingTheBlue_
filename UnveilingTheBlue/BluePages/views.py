@@ -101,7 +101,8 @@ def home(request):
 
     cards.reverse()
 
-    return render(request, 'BluePages/index.html', {'cards': cards})
+    n_id = 0
+    return render(request, 'BluePages/index.html', {'cards': cards, 'n_id': n_id})
 
 
 def simulator(request):

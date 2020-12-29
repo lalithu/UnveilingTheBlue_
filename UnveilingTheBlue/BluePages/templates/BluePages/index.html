@@ -51,7 +51,8 @@
 {% for card in cards %}
 
 <article>
-    <div class="card_wrapper">
+    <div class="card_wrapper" id="{{ forloop.counter }}">
+        {{ forloop.counter }}
         <div class="card">
             <div class="right_side">
                 <div class="patch">
