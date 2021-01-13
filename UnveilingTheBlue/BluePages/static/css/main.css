@@ -2672,7 +2672,7 @@ input[type="radio"]:checked + label {
   position: relative;
   margin: auto;
   text-align: center;
-  background: dodgerblue;
+  background: transparent;
   box-shadow: 0px 0px 40px gold;
   border-radius: 5px;
   width: 160px;
@@ -2762,7 +2762,7 @@ input[type="radio"]:checked + label {
   font-size: 1rem;
   z-index: 1000;
   position: relative;
-  color: white;
+  color: limegreen;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 30px;
@@ -2776,15 +2776,26 @@ input[type="radio"]:checked + label {
   font-size: 1rem;
   z-index: 1000;
   position: relative;
-  color: white;
+  color: limegreen;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 30px;
-  border: 1px solid white;
+  border: 1px solid limegreen;
   border-radius: 5px;
   margin-left: 4px;
   padding-left: 2px;
   padding-right: 2px;
   padding-top: 2px;
   padding-bottom: 2px;
+}
+
+.boxShadowAnim1 {
+  display: flex;
+  flex-direction: row;
+  width: 1250px;
+  height: 375px;
+  background: transparent;
+  border-radius: 40px;
+  border-top: 4px solid limegreen;
+  position: absolute;
 }

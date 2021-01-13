@@ -57,6 +57,11 @@
 
 <article>
     <div class="card_wrapper" id="{{ forloop.counter }}">
+        {% if unus == forloop.counter %}
+        <div class="boxShadowAnim1"></div>
+        {% else %}
+
+        {% endif %}
 
         {% if next_launch_flight_number_css == forloop.counter0 %}
         <div class="next_launch_thingy" style="display: block;">Next Launch</div>

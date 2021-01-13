@@ -108,8 +108,9 @@ def home(request):
     actual_NLFN = next_launch["flight_number"] - 1
     next_launch_flight_number = (n - next_launch["flight_number"]) + 1
     next_launch_flight_number_css = next_launch_flight_number - 1
+    unus = 1
 
-    return render(request, 'BluePages/index.html', {'cards': cards, 'next_launch_flight_number': next_launch_flight_number, "next_launch_flight_number_css": next_launch_flight_number_css, 'actual_NLFN': actual_NLFN})
+    return render(request, 'BluePages/index.html', {'cards': cards, 'next_launch_flight_number': next_launch_flight_number, "next_launch_flight_number_css": next_launch_flight_number_css, 'actual_NLFN': actual_NLFN, 'unus': unus})
 
 
 def simulator(request):
