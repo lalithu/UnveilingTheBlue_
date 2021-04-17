@@ -755,7 +755,7 @@ body {
 }
 
 .nav-link-wrapper:hover {
-  border-bottom: 2px solid dodgerblue;
+  border-bottom: 1px solid dodgerblue;
 }
 
 /*.logo a:hover {

@@ -60,9 +60,11 @@ def home(request):
     response = requests.get("https://api.spacexdata.com/v4/launches")
     next_launch_response = requests.get(
         "https://api.spacexdata.com/v4/launches/next")
+    all_rockets = requests.get("https://api.spacexdata.com/v4/rockets")
 
     launches = response.json()
     next_launch = next_launch_response.json()
+    rockets = all_rockets.json()
 
     flight_numbers = []
     patches = []
