@@ -56,7 +56,7 @@ class BlueView(View):
 '''
 
 
-def home(request):
+'''def home(request):
     response = requests.get("https://api.spacexdata.com/v4/launches")
     next_launch_response = requests.get(
         "https://api.spacexdata.com/v4/launches/next")
@@ -112,7 +112,12 @@ def home(request):
     next_launch_flight_number_css = next_launch_flight_number - 1
     unus = 1
 
-    return render(request, 'BluePages/index.html', {'cards': cards, 'next_launch_flight_number': next_launch_flight_number, "next_launch_flight_number_css": next_launch_flight_number_css, 'actual_NLFN': actual_NLFN, 'unus': unus})
+    return render(request, 'BluePages/index.html', {'cards': cards, 'next_launch_flight_number': next_launch_flight_number, "next_launch_flight_number_css": next_launch_flight_number_css, 'actual_NLFN': actual_NLFN, 'unus': unus})'''
+
+
+def home(request):
+
+    return render(request, 'BluePages/index.html', {})
 
 
 def simulator(request):

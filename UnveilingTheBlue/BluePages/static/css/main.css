@@ -13,8 +13,7 @@
   overflow: hidden;
   transition: all 0.5s;
   /* darkmode!! background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); */
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  color: white;
+  background: white;
 }
 
 html {
@@ -667,6 +666,7 @@ body {
 
 .left-side-image {
   display: flex;
+  color: dodgerblue;
 }
 
 .nav-wrapper > .right-side > div {
@@ -690,7 +690,8 @@ body {
 
   padding: 4px;
   /* For More Cool Gradients */
-  background: linear-gradient(
+
+  /* background: linear-gradient(
     to right,
     #090a0f,
     dodgerblue 20%,
@@ -705,20 +706,20 @@ body {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: blueblue 5s linear infinite;
+  animation: blueblue 5s linear infinite; */
 
-  /* color: #f35626;
-	background-image: -webkit-linear-gradient(90deg, #f35626, #feab3a);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	-webkit-animation: hue 5s infinite linear; */
+  /*color: #f35626;
+  background-image: -webkit-linear-gradient(90deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 5s infinite linear;*/
 }
 
-@keyframes blueblue {
+/*@keyframes blueblue {
   to {
     background-position: 200% center;
   }
-}
+}*/
 
 /* @-webkit-keyframes hue {
 	from {
@@ -728,6 +729,10 @@ body {
 		-webkit-filter: hue-rotate(-360deg);
 	}
 } */
+
+.left-side-image > div a {
+  color: dodgerblue;
+}
 
 .nav-link-wrapper {
   height: 20px;
