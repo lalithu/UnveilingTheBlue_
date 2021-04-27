@@ -112,12 +112,7 @@ class BlueView(View):
     next_launch_flight_number_css = next_launch_flight_number - 1
     unus = 1
 
-    return render(request, 'BluePages/index.html', {'cards': cards, 'next_launch_flight_number': next_launch_flight_number, "next_launch_flight_number_css": next_launch_flight_number_css, 'actual_NLFN': actual_NLFN, 'unus': unus})'''
-
-
-def home(request):
-
-    return render(request, 'BluePages/index.html', {})
+    return render(request, 'BluePages/index.html', {'cards': cards, 'next_launch_flight_number': next_launch_flight_number, "next_launch_flight_number_css": next_launch_flight_number_css, 'actual_NLFN': actual_NLFN, 'unus': unus})
 
 
 def simulator(request):
@@ -398,10 +393,10 @@ def interplanetaryFlight(request):
     solarsys.plot_body_orbit(Venus, EPOCH1)
     solarsys.plot_body_orbit(Earth, EPOCH1)
     solarsys.plot_body_orbit(Mars, EPOCH1)
-    '''solarsys.plot_body_orbit(Jupiter, EPOCH1)
-    solarsys.plot_body_orbit(Saturn, EPOCH1)
-    solarsys.plot_body_orbit(Uranus, EPOCH1)
-    solarsys.plot_body_orbit(Neptune, EPOCH1)'''
+    ''solarsys.plot_body_orbit(Jupiter, EPOCH1)
+solarsys.plot_body_orbit(Saturn, EPOCH1)
+solarsys.plot_body_orbit(Uranus, EPOCH1)
+solarsys.plot_body_orbit(Neptune, EPOCH1)''
 
     solarsys_div = plot(solarsys.set_view(45 * u.deg, -120 *
                                           u.deg, 4 * u.km), output_type='div')
@@ -428,6 +423,105 @@ def interplanetaryFlight(request):
     frame_div = plot(frame.set_view(45 * u.deg, -120 *
                                     u.deg, 4 * u.km), output_type='div')
     return render(request, 'BluePages/interplanetaryFlight.html',  context={'frame_div': frame_div, 'solarsys_div': solarsys_div})
+
+
+def about(request):
+    if request.method == "POST":
+        message_name = request.POST['message-name']
+        message_email = request.POST['message-email']
+        message = request.POST['message']
+
+        # Sending an Email
+        send_mail(
+            "Unveiling The Blue - Message from: " + message_name,  # Subject
+            message,  # Message
+            message_email,  # From Email
+            ['lalithuriti@gmail.com'],  # To Email
+        )
+
+        return render(request, 'BluePages/about.html', {'message_name': message_name})
+
+    else:
+        return render(request, 'BluePages/about.html', {})
+
+'''
+
+
+def get_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    print(request.META.get('HTTP_X_FORWARDED_FOR'))
+
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+
+    else:
+        remote_addr = request.META.get('REMOTE_ADDR')
+        print(request.META.get('REMOTE_ADDR'))
+
+        ip = remote_addr
+
+    print(ip)
+
+    return ip
+
+
+def home(request):
+
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    print(request.META.get('HTTP_X_FORWARDED_FOR'))
+
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+
+    else:
+        remote_addr = request.META.get('REMOTE_ADDR')
+        print(request.META.get('REMOTE_ADDR'))
+
+        ip = remote_addr
+
+    print(ip)
+
+    ip = '111.93.30.66'
+
+    print(ip)
+
+    import ipinfo
+    access_token = 'f9ceaee51b1a4a'
+    handler = ipinfo.getHandler(access_token)
+    ip_address = ip
+    details = handler.getDetails(ip_address)
+    country = details.country
+    region = details.region
+    city = details.city
+    lat_lon = details.loc
+
+    location = "You are currently in {}, {}, {}".format(city, region, country)
+
+    print(location)
+
+    # If the Site ever becomes large scale enough, this is a reminder to take advantage of google maps's api for routes, directions, etc.
+
+    return render(request, 'BluePages/index.html', {'location': location})
+
+
+def simulator(request):
+
+    return render(request, 'BluePages/simulator.html', {})
+
+
+def spaceExploration(request):
+
+    return render(request, 'BluePages/spaceExploration.html', {})
+
+
+def astrodev(request):
+
+    return render(request, 'BluePages/astrodev.html', {})
+
+
+def interplanetaryFlight(request):
+
+    return render(request, 'BluePages/interplanetaryFlight.html', {})
 
 
 def about(request):
