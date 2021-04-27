@@ -18,7 +18,7 @@
 }
 
 html {
-  background: dodgerblue;
+  background: #1e90ff;
 }
 
 @import "compass/css3";
@@ -2798,4 +2798,11 @@ input[type="radio"]:checked + label {
   border-radius: 40px;
   border-top: 4px solid limegreen;
   position: absolute;
+}
+
+.line {
+  height: 10px;
+  width: 100%;
+  background-color: dodgerblue;
+  margin-bottom: 20px;
 }

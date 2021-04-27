@@ -10,11 +10,11 @@
   </div>
 </div>
 
-<div>
+<!--<div>
   <h1 class="aBriefHistoryOfAstronomy"><span>Interplanetary Flight Simulator</h1>
 </div>
 
-<!--<article>
+<article>
   <div class="dropdownExplanationDiv">
     <h1 class="dropdownExplanation">Welcome to Mission Control. Here you can explore the orbital mechanics at work when
       designing an interplanetary expedition. This is a very simplistic analysis and is purposed with providing a basic
@@ -22,7 +22,7 @@
       expeditions to render your mission's trajectories to see if you successfully made it to Mars! To Mars and
       Beyond!! {{ Ve_input }}</h1>
   </div>
-</article>-->
+</article>
 
 {% if launch_date %}
 <div>
@@ -233,6 +233,75 @@
     </div>
     <h2 class="year" style="margin-top: 0px; margin-bottom: 10px;">{{ error_message }}</h2>
   </form>
+</article>
+-->
+<div>
+  <h1 class="aBriefHistoryOfSpaceExploration">Blog</h1>
+</div>
+
+<!--<article>
+  <div class="dropdownExplanationDiv">
+    <h1 class="dropdownExplanation">For the purposes of creating a clean and elegant timeline, I added
+      dropdowns.
+      Click on the dropdowns to discover more information regarding the given Article/Mission and to see other
+      significant events that took place at that time.</h1>
+  </div>
+</article>
+
+<div>
+  <h2 class="whereItAllBegan">Recent</h2>
+</div>-->
+
+<div class="line"></div>
+
+<article>
+  <h2 class="article-title">Ingenuity's Madiem Flight</h2>
+  <h3 class="year">4/19/21</h3>
+
+  <p class="article-para">
+    The Cold War was a prolonged period of geopolitical and economic tension between the Capitalist United
+    States and the former Communist Soviet Union that lasted from 1947 to 1991 due to conflicting political and
+    economic ideals. George Keenan’s 1946 “The Long Telegram,” explaining how the Soviets and
+
+    the U.S. will never reach a lasting agreement, left America to take action with containment, a defense
+    strategy that gave way to unprecedented scientific and technological innovation that spanned the next four
+    decades. The goal of containment was to restrict communist expansion and to keep it
+
+    within its already pre-existing boundaries. This caused incredible tension between the former allies because
+    it encouraged each to one-up the other with greater military arsenals, defense forces, and atomic bombs,
+    known today as the Arms Race. On 4th Oct 1957, a Soviet R-7 Intercontinental
+    Ballistic Missile launched Sputnik 1, the world’s first artificial earth satellite into a low elliptical
+    earth orbit.
+  </p>
+
+  <img class="article-img r-7" src="{% static 'css/images/r-7.jpg' %}" alt="R7 ICBM">
+  <figcaption class="imgCaptions"><a href="https://www.britannica.com/" target="_blank">R-7 ICBM,
+      Britannica.com</a></figcaption>
+
+  <p class="article-para">
+    The launch of Sputnik 1 came as an unpleasant surprise to many Americans because space was perceived as the
+    next palpable chapter in the rich American tale of exploration and with the Soviets having more advanced
+    technology and greater scientific infrastructure, it was critical for the U.S.
+
+    not to fall too far behind. With their escalating rivalry and America's fear of being overtaken, the Cold
+    War was extended into space and resulted in the Space Race. The Space Race was considered an important part
+    of the Cold War because the rivalry between the two countries to develop
+
+    aerospace capabilities showed the world which country had the best scientific, technological, and economic
+    support.
+  </p>
+
+  <img class="article-img sputnik1" src="{% static 'css/images/sputnik1.jpg' %}" alt="Sputnik 1">
+  <figcaption class="imgCaptions"><a href="https://airandspace.si.edu" target="_blank">Sputnik 1,
+      Airandspace.si.edu</a></figcaption>
+
+  <p class="article-para">
+    This kicked off and accelerated vast developmental efforts along with tremendous financial funding on both
+    sides to launch artificial satellites and uncrewed space probes into low earth orbit and beyond, and to
+    ultimately be the first ones to successfully land humans on the moon.
+
+    The Space Race is where the realm of modern space exploration, as we know it, all began.
+  </p>
 </article>
 
 {% endif %}
